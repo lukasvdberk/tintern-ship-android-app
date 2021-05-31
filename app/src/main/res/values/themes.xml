@@ -18,6 +18,10 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    <style name="AppTheme.LighterEditText" parent="Widget.AppCompat.EditText">
+        <item name="colorControlActivated">@color/primary_color</item>
+        <item name="colorControlNormal">@color/primary_color</item>
+    </style>
 
     <style name="Theme.TinternShipBackend.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
