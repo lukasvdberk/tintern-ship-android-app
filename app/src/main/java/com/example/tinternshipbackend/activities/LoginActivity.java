@@ -30,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.toolbar);
+
+        setupListeners();
     }
 
     private void setupListeners() {
@@ -38,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                login();
             }
         });
     }
