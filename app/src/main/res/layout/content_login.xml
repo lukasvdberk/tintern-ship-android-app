@@ -38,15 +38,15 @@
             android:textSize="20sp" />
 
         <EditText
+            android:id="@+id/emailEdit"
             android:layout_marginTop="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:id="@+id/editTextTextPersonName"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:autofillHints="@string/email"
             android:background="@drawable/rounded_primary_text_color"
-            android:backgroundTint="@android:color/holo_red_light"
+            android:theme="@style/MyEditTextTheme"
             android:ems="10"
             android:inputType="textPersonName"
             tools:ignore="LabelFor" />
@@ -66,6 +66,7 @@
             android:layout_marginRight="20dp"
             android:layout_width="match_parent"
             android:background="@drawable/rounded_primary_text_color"
+            android:theme="@style/MyEditTextTheme"
             android:layout_height="40dp"
             android:ems="10"
             android:inputType="textPassword"
@@ -73,8 +74,8 @@
             tools:ignore="LabelFor" />
 
         <Button
+            android:id="@+id/loginBtn"
             android:layout_margin="40dp"
-            android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/primary_text_color"
