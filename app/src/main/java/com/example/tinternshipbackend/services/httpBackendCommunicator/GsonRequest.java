@@ -47,7 +47,8 @@ public class GsonRequest<T> extends Request<T> {
         this.listener = listener;
     }
 
-    public GsonRequest(String url,
+    public GsonRequest(
+       String url,
        Type type,
        Map<String, String> headers,
        int method,
@@ -83,14 +84,18 @@ public class GsonRequest<T> extends Request<T> {
         try {
             String json = new String(response.data,HttpHeaderParser.parseCharset(response.headers));
             Log.d(TAG, "RESPONSE = " + json);
+
             if (mClazz != null) {
                 return Response.success(gson.fromJson(json, mClazz), HttpHeaderParser.parseCacheHeaders(response));
             } else {
-                return (Response<T>) Response.success( gson.fromJson(json, mType), HttpHeaderParser.parseCacheHeaders(response));
+                T t = gson.fromJson(json, mType);
+                return Response.success( t, HttpHeaderParser.parseCacheHeaders(response));
             }
         } catch (UnsupportedEncodingException e) {
             return Response.error(new ParseError(e));
         } catch (JsonSyntaxException e) {
+            return Response.error(new ParseError(e));
+        } catch (ClassCastException e) {
             return Response.error(new ParseError(e));
         }
     } // end parseNetwResp

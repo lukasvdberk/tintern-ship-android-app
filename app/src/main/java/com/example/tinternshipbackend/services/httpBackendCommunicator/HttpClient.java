@@ -5,19 +5,15 @@ import android.content.Context;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.example.tinternshipbackend.models.User;
 import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Method;
 import com.android.volley.Request;
 import java.lang.reflect.Type;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class HttpClient<T> {
     // TODO set dynamicly from env or something
-    String BASE_URL = "http://192.168.0.86:8080";
+    String BASE_URL = "https://bf339e54ad44.ngrok.io";
     Context context;
 
     public HttpClient(Context context) {
@@ -27,13 +23,13 @@ public class HttpClient<T> {
     public void get(String relativeUrl, HttpResponse<T> httpResponse) {
         Type type = new TypeToken<Class<T>>(){}.getType();
 
-        GsonRequest<Class<T>> request = new GsonRequest<Class<T>>(
+        GsonRequest<T> request = new GsonRequest<T>(
                 getUrl(relativeUrl),
                 type,
                 getHeaders(),
-                new Response.Listener<Class<T>>() {
+                new Response.Listener<T>() {
                     @Override
-                    public void onResponse(Class<T> response) {
+                    public void onResponse(T response) {
                         httpResponse.onSuccess(response);
                     }
                 },
@@ -60,16 +56,17 @@ public class HttpClient<T> {
     }
 
     private void sendRequestWithData(int method, String relativeUrl, Object bodyData, HttpResponse<T> httpResponse) {
-        Type type = new TypeToken<Class<T>>(){}.getType();
-        GsonRequest<Class<T>> request = new GsonRequest<Class<T>>(
+        Type type = new TypeToken<T>(){}.getType();
+
+        GsonRequest<T> request = new GsonRequest<T>(
                 getUrl(relativeUrl),
                 type,
                 getHeaders(),
                 method,
                 bodyData,
-                new Response.Listener<Class<T>>() {
+                new Response.Listener<T>() {
                     @Override
-                    public void onResponse(Class<T> response) {
+                    public void onResponse(T response) {
                         httpResponse.onSuccess(response);
                     }
                 },
@@ -92,6 +89,8 @@ public class HttpClient<T> {
         // TODO add authorization header.
         Map<String, String> map = new HashMap<>();
         map.put("Authorization", "");
+        map.put("Content-Type", "application/json");
+        map.put("Accept", "application/json");
 
         return map;
     }
