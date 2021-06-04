@@ -9,11 +9,12 @@ import com.google.gson.reflect.TypeToken;
 import com.android.volley.Request;
 import java.lang.reflect.Type;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class HttpClient<T> {
     // TODO set dynamicly from env or something
-    String BASE_URL = "https://bf339e54ad44.ngrok.io";
+    String BASE_URL = "https://7e97465f3839.ngrok.io";
     Context context;
 
     public HttpClient(Context context) {
@@ -43,21 +44,21 @@ public class HttpClient<T> {
         VolleyHelper.getInstance(context).addToRequestQueue(request);
     }
 
-    public void post(String relativeUrl, Object bodyData, HttpResponse<T> httpResponse) {
-        sendRequestWithData(Request.Method.POST, relativeUrl, bodyData, httpResponse);
+    public void post(String relativeUrl, Object bodyData, HttpResponse<T> httpResponse, Class<T> clazz) {
+        sendRequestWithData(Request.Method.POST, relativeUrl, bodyData, httpResponse, clazz);
     }
 
-    public void put(String relativeUrl, Object bodyData, HttpResponse<T> httpResponse) {
-        sendRequestWithData(Request.Method.PUT, relativeUrl, bodyData, httpResponse);
+    public void put(String relativeUrl, Object bodyData, HttpResponse<T> httpResponse, Class<T> clazz) {
+        sendRequestWithData(Request.Method.PUT, relativeUrl, bodyData, httpResponse, clazz);
     }
 
-    public void delete(String relativeUrl, Object bodyData, HttpResponse<T> httpResponse) {
-        sendRequestWithData(Request.Method.DELETE, relativeUrl, bodyData, httpResponse);
+    public void delete(String relativeUrl, Object bodyData, HttpResponse<T> httpResponse, Class<T> clazz) {
+        sendRequestWithData(Request.Method.DELETE, relativeUrl, bodyData, httpResponse, clazz);
     }
 
-    private void sendRequestWithData(int method, String relativeUrl, Object bodyData, HttpResponse<T> httpResponse) {
-        Type type = new TypeToken<T>(){}.getType();
-
+    private void sendRequestWithData(int method, String relativeUrl, Object bodyData, HttpResponse<T> httpResponse, Class<T> clazz) {
+//        Type type = new TypeToken<T>(){}.getType();
+        Type type = TypeToken.getParameterized(clazz).getType();
         GsonRequest<T> request = new GsonRequest<T>(
                 getUrl(relativeUrl),
                 type,

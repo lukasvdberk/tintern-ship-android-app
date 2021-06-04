@@ -18,6 +18,6 @@ public class LoginController {
     }
 
     public void login(User user, HttpResponse<LoginResponse> response) {
-        new HttpClient<LoginResponse>(context).post("/auth/login", user, response);
+        new HttpClient<LoginResponse>(context).post("/auth/login", user, response, LoginResponse.class);
     }
 }
