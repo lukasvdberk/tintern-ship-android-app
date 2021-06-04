@@ -88,8 +88,7 @@ public class GsonRequest<T> extends Request<T> {
             if (mClazz != null) {
                 return Response.success(gson.fromJson(json, mClazz), HttpHeaderParser.parseCacheHeaders(response));
             } else {
-                T t = gson.fromJson(json, mType);
-                return Response.success( t, HttpHeaderParser.parseCacheHeaders(response));
+                return Response.success( gson.fromJson(json, mType), HttpHeaderParser.parseCacheHeaders(response));
             }
         } catch (UnsupportedEncodingException e) {
             return Response.error(new ParseError(e));
@@ -98,5 +97,5 @@ public class GsonRequest<T> extends Request<T> {
         } catch (ClassCastException e) {
             return Response.error(new ParseError(e));
         }
-    } // end parseNetwResp
+    }
 }

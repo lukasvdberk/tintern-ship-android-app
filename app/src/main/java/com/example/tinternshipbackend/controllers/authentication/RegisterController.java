@@ -8,12 +8,27 @@ import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpClien
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
 
 public class RegisterController {
+    AuthController authController;
     Context context;
+
     public RegisterController(Context context) {
         this.context = context;
+        this.authController = new AuthController(context);
     }
 
     public void register(User user, HttpResponse<LoginResponse> response) {
-        new HttpClient<LoginResponse>(context).post("/auth/register", user, response, LoginResponse.class);
+        HttpResponse<LoginResponse> onResponse = new HttpResponse<LoginResponse>() {
+            @Override
+            public void onSuccess(LoginResponse data) {
+                authController.setJWTKey(data.token);
+                response.onSuccess(data);
+            }
+
+            @Override
+            public void onError(String error) {
+                response.onError(error);
+            }
+        };
+        new HttpClient<LoginResponse>(context).post("/auth/register", user, onResponse, LoginResponse.class);
     }
 }

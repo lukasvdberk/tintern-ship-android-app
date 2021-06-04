@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.example.tinternshipbackend.controllers.authentication.AuthController;
 import com.google.gson.reflect.TypeToken;
 import com.android.volley.Request;
 import java.lang.reflect.Type;
@@ -87,9 +88,8 @@ public class HttpClient<T> {
     }
 
     private Map<String, String> getHeaders() {
-        // TODO add authorization header.
         Map<String, String> map = new HashMap<>();
-        map.put("Authorization", "");
+        map.put("Authorization", new AuthController(context).getJWTKey());
         map.put("Content-Type", "application/json");
         map.put("Accept", "application/json");
 

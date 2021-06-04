@@ -3,7 +3,7 @@ package com.example.tinternshipbackend.controllers.authentication;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-class AuthController {
+public class AuthController {
     Context context;
     SharedPreferences sharedPref;
     final String JWT_KEY = "JWT_KEY";
