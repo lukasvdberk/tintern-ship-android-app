@@ -52,7 +52,6 @@ public class RegisterCompany extends AppCompatActivity {
     }
 
     private void registerCompany() {
-        // TODO add profile pic
         String companyName = ((EditText) findViewById(R.id.companyName)).getText().toString();
         String aboutTheCompany = ((EditText) findViewById(R.id.aboutTheCompany)).getText().toString();
         String phoneNumber = ((EditText) findViewById(R.id.companyPhoneNumber)).getText().toString();
@@ -62,7 +61,6 @@ public class RegisterCompany extends AppCompatActivity {
         this.companyController.saveCompany(company, new HttpResponse<Company>() {
             @Override
             public void onSuccess(Company data) {
-                // TODO add redirect
                 ToastUtil.showLongToast(mContext, "Company information was saved!");
             }
 

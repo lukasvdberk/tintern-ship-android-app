@@ -17,7 +17,6 @@ public class UserController {
      * @return Whether the file was uploaded or not
      */
     public boolean addImageToProfile(String filePath) {
-        // TODO replace with actual request
         try {
             String upload = new MultipartUploadRequest(this.context, null, HttpClient.BASE_URL + "users/avatar")
                     .setMethod("POST")

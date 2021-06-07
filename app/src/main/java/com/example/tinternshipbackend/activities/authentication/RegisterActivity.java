@@ -16,6 +16,7 @@ import com.example.tinternshipbackend.controllers.authentication.RegisterControl
 import com.example.tinternshipbackend.models.User;
 import com.example.tinternshipbackend.responses.authentication.LoginResponse;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
+import com.example.tinternshipbackend.viewUtil.ToastUtil;
 
 public class RegisterActivity extends AppCompatActivity {
     private RegisterController registerController;
@@ -51,26 +52,20 @@ public class RegisterActivity extends AppCompatActivity {
         registerController.register(user, new HttpResponse<LoginResponse>() {
             @Override
             public void onSuccess(LoginResponse data) {
-                // TODO redirect to different page and show toast
                 Intent decideUserTypeActivity = new Intent(mContext, DecideUserTypeActivity.class);
                 startActivity(decideUserTypeActivity);
-                showToast("You are now registered in!");
+                ToastUtil.showLongToast(mContext,"You are now registered!");
             }
 
             @Override
             public void onError(String error) {
                 if(error != null) {
-                    showToast(error);
+                    ToastUtil.showLongToast(mContext,error);
                 }
                 else {
-                    showToast("Invalid register credentials.");
+                    ToastUtil.showLongToast(mContext,"Invalid register credentials.");
                 }
             }
         });
-    }
-
-    // TODO register as seperate function
-    private void showToast(String text) {
-        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
     }
 }
