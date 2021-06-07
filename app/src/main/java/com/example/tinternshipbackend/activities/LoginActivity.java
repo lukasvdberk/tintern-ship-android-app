@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -60,14 +61,19 @@ public class LoginActivity extends AppCompatActivity {
         loginController.login(user, new HttpResponse<LoginResponse>() {
             @Override
             public void onSuccess(LoginResponse data) {
-                Log.d("login", "user logged in");
+                // TODO redirect to different page and show toast
+                showToast("You are logged in!");
             }
 
             @Override
             public void onError(String error) {
-                Log.d("login", "failed to login");
+                showToast("Invalid login credentials.");
             }
         });
+    }
+
+    private void showToast(String text) {
+        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
     }
 
 }

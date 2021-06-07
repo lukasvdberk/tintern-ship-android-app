@@ -22,4 +22,8 @@ public class AuthController {
     public String getJWTKey() {
         return sharedPref.getString(JWT_KEY, "");
     }
+
+    public boolean isAuthenticated() {
+        return !this.getJWTKey().isEmpty();
+    }
 }
