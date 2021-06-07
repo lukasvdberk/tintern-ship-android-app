@@ -2,6 +2,7 @@ package com.example.tinternshipbackend.activities.authentication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.tinternshipbackend.R;
+import com.example.tinternshipbackend.activities.account_management.DecideUserTypeActivity;
 import com.example.tinternshipbackend.controllers.authentication.RegisterController;
 import com.example.tinternshipbackend.models.User;
 import com.example.tinternshipbackend.responses.authentication.LoginResponse;
@@ -17,6 +19,7 @@ import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpRespo
 
 public class RegisterActivity extends AppCompatActivity {
     private RegisterController registerController;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         this.registerController = new RegisterController(this);
+        this.mContext = this;
         setupListeners();
     }
 
@@ -48,6 +52,8 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResponse data) {
                 // TODO redirect to different page and show toast
+                Intent decideUserTypeActivity = new Intent(mContext, DecideUserTypeActivity.class);
+                startActivity(decideUserTypeActivity);
                 showToast("You are now registered in!");
             }
 

@@ -10,7 +10,21 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TinternShipBackend">
+        android:theme="@style/Theme.TinternShipBackend.NoActionBar">
+        <activity
+            android:name=".activities.account_management.RegisterCompany"
+            android:label="@string/looking_for"
+            android:theme="@style/Theme.TinternShipBackend.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.account_management.RegisterIntern"
+            android:label="@string/looking_for"
+            android:theme="@style/Theme.TinternShipBackend.NoActionBar" />
         <activity
             android:name=".activities.MainActivity"
             android:theme="@style/Theme.TinternShipBackend.NoActionBar">
@@ -23,16 +37,11 @@
         <activity
             android:name=".activities.authentication.RegisterActivity"
             android:label="@string/register"
-            android:theme="@style/Theme.TinternShipBackend.NoActionBar"
-            >
-
-        </activity>
+            android:theme="@style/Theme.TinternShipBackend.NoActionBar" />
         <activity
             android:name=".activities.account_management.DecideUserTypeActivity"
             android:label="@string/looking_for"
-            android:theme="@style/Theme.TinternShipBackend.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.TinternShipBackend.NoActionBar" />
         <activity
             android:name=".activities.authentication.LoginActivity"
             android:label="@string/title_activity_login"

@@ -1,8 +1,11 @@
 package com.example.tinternshipbackend.activities.authentication;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.tinternshipbackend.R;
+import com.example.tinternshipbackend.activities.account_management.DecideUserTypeActivity;
 import com.example.tinternshipbackend.controllers.authentication.LoginController;
 import com.example.tinternshipbackend.models.User;
 import com.example.tinternshipbackend.responses.authentication.LoginResponse;
@@ -16,6 +19,7 @@ import android.widget.Toast;
 import com.example.tinternshipbackend.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
+    private Context mContext;
     private ActivityLoginBinding binding;
     private LoginController loginController;
 
@@ -28,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbar);
         this.loginController = new LoginController(binding.toolbar.getContext());
+        this.mContext = this;
         setupListeners();
     }
 
@@ -45,7 +50,8 @@ public class LoginActivity extends AppCompatActivity {
         loginController.login(user, new HttpResponse<LoginResponse>() {
             @Override
             public void onSuccess(LoginResponse data) {
-                // TODO redirect to different page and show toast
+                Intent decideUserTypeActivity = new Intent(mContext, DecideUserTypeActivity.class);
+                startActivity(decideUserTypeActivity);
                 showToast("You are logged in!");
             }
 
