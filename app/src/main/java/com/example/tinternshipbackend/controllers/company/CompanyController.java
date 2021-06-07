@@ -18,6 +18,6 @@ public class CompanyController {
      * @param company
      */
     public void saveCompany(Company company, HttpResponse<Company> onResponse) {
-        new HttpClient<Company>(context).post("companies/user/1", company, onResponse, Company.class);
+        new HttpClient<Company>(context).post("companies/", company, onResponse, Company.class);
     }
 }

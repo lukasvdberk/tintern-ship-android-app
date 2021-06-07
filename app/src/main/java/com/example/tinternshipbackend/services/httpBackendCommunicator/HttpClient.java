@@ -57,7 +57,6 @@ public class HttpClient<T> {
     }
 
     private void sendRequestWithData(int method, String relativeUrl, Object bodyData, HttpResponse<T> httpResponse, Class<T> clazz) {
-//        Type type = new TypeToken<T>(){}.getType();
         Type type = TypeToken.getParameterized(clazz).getType();
         GsonRequest<T> request = new GsonRequest<T>(
                 getUrl(relativeUrl),
@@ -88,7 +87,7 @@ public class HttpClient<T> {
 
     private Map<String, String> getHeaders() {
         Map<String, String> map = new HashMap<>();
-        map.put("Authorization", new AuthController(context).getJWTKey());
+        map.put("Authorization", "Bearer " +  new AuthController(context).getJWTKey());
         map.put("Content-Type", "application/json");
         map.put("Accept", "application/json");
 
