@@ -6,6 +6,8 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="go_to_login_page">Already have an account?</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
 

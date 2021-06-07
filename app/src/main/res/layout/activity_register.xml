@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/secondary_color"
+    android:layout_centerVertical="true"
+    android:layout_centerInParent="true"
+    tools:context=".activities.RegisterActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/secondary_color"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:orientation="vertical"
+        android:gravity="center_vertical|center_horizontal"
+        >
+        <Button
+            android:id="@+id/gotLoginPage"
+            android:layout_margin="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary_text_color"
+            android:background="@drawable/rounded_button"
+            android:text="@string/go_to_login_page" />
+        <TextView
+            android:layout_margin="10dp"
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary_text_color"
+            android:textSize="26sp"
+            android:text="@string/register" />
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="left|center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/email"
+            android:textColor="@color/primary_text_color"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/emailEdit"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:autofillHints="@string/email"
+            android:background="@drawable/rounded_primary_text_color"
+            android:theme="@style/MyEditTextTheme"
+            android:ems="10"
+            android:inputType="textPersonName"
+            tools:ignore="LabelFor" />
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="left|center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary_text_color"
+            android:textSize="20sp"
+            android:text="@string/password"/>
+        <EditText
+            android:id="@+id/editTextTextPassword"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:background="@drawable/rounded_primary_text_color"
+            android:theme="@style/MyEditTextTheme"
+            android:layout_height="40dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:autofillHints="@string/password"
+            tools:ignore="LabelFor" />
+
+        <Button
+            android:id="@+id/registerBtn"
+            android:layout_margin="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primary_text_color"
+            android:background="@drawable/rounded_button"
+            android:text="@string/register" />
+    </LinearLayout>
+</RelativeLayout>

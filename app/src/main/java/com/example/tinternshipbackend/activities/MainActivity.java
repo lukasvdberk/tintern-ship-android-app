@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
         // TODO refactor this by setting in the httpclient if it received a 401 and then redirect to the given page.
         if(!authController.isAuthenticated()) {
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, RegisterActivity.class);
             startActivity(intent);
         } else {
             // TODO redirect to home page if authenticated or something.

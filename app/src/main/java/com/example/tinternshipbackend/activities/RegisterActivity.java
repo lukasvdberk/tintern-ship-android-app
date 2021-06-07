@@ -1,52 +1,54 @@
 package com.example.tinternshipbackend.activities;
 
-import android.os.Bundle;
-
-import com.example.tinternshipbackend.R;
-import com.example.tinternshipbackend.controllers.authentication.LoginController;
-import com.example.tinternshipbackend.models.User;
-import com.example.tinternshipbackend.responses.authentication.LoginResponse;
-import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.tinternshipbackend.databinding.ActivityLoginBinding;
+import com.example.tinternshipbackend.R;
+import com.example.tinternshipbackend.controllers.authentication.RegisterController;
+import com.example.tinternshipbackend.models.User;
+import com.example.tinternshipbackend.responses.authentication.LoginResponse;
+import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
 
-public class LoginActivity extends AppCompatActivity {
-    private ActivityLoginBinding binding;
-    private LoginController loginController;
+public class RegisterActivity extends AppCompatActivity {
+    private RegisterController registerController;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_register);
 
-        binding = ActivityLoginBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        setSupportActionBar(binding.toolbar);
-        this.loginController = new LoginController(binding.toolbar.getContext());
+        this.registerController = new RegisterController(this);
         setupListeners();
     }
 
     private void setupListeners() {
-        Button loginButton = (Button) findViewById(R.id.loginBtn);
+        Button registerButton = (Button) findViewById(R.id.registerBtn);
+        Button gotoLoginPage = (Button) findViewById(R.id.gotLoginPage);
 
-        loginButton.setOnClickListener(v -> login());
+        registerButton.setOnClickListener(v -> register());
+
+        gotoLoginPage.setOnClickListener((View.OnClickListener) v -> {
+            Intent loginActivity = new Intent(this, LoginActivity.class);
+            startActivity(loginActivity);
+        });
     }
 
-    private void login() {
+    private void register() {
         String email = ((EditText)findViewById(R.id.emailEdit)).getText().toString();
         String password = ((EditText)findViewById(R.id.editTextTextPassword)).getText().toString();
 
         User user = new User(email, password);
-        loginController.login(user, new HttpResponse<LoginResponse>() {
+        registerController.register(user, new HttpResponse<LoginResponse>() {
             @Override
             public void onSuccess(LoginResponse data) {
                 // TODO redirect to different page and show toast
-                showToast("You are logged in!");
+                showToast("You are now registered in!");
             }
 
             @Override
@@ -64,5 +66,4 @@ public class LoginActivity extends AppCompatActivity {
     private void showToast(String text) {
         Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
     }
-
 }

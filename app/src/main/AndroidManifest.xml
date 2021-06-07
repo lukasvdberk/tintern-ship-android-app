@@ -21,11 +21,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".activities.RegisterActivity"
+            android:label="@string/register"
+            android:theme="@style/Theme.TinternShipBackend.NoActionBar">
+        </activity>
+        <activity
             android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login"
-            android:theme="@style/Theme.TinternShipBackend.NoActionBar">
-
-        </activity>
+            android:theme="@style/Theme.TinternShipBackend.NoActionBar"></activity>
     </application>
 
 </manifest>
