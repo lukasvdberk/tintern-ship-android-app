@@ -13,6 +13,11 @@
     <string name="go_to_login_page">Already have an account?</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
+    <string name="create_profile">Create profile</string>
+    <string name="company_name">Company name</string>
+    <string name="about_the_company">About the company</string>
+    <string name="phone_number">Phone number</string>
+    <string name="upload_profile_picture">Upload profile picture</string>
 
     <string name="previous">Previous</string>
 
