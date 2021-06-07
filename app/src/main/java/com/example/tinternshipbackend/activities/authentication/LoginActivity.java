@@ -1,4 +1,4 @@
-package com.example.tinternshipbackend.activities;
+package com.example.tinternshipbackend.activities.authentication;
 
 import android.os.Bundle;
 

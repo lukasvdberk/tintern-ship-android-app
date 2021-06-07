@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.tinternshipbackend.R;
+import com.example.tinternshipbackend.activities.authentication.RegisterActivity;
 import com.example.tinternshipbackend.controllers.authentication.AuthController;
 
 public class MainActivity extends AppCompatActivity {

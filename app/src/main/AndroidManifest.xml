@@ -21,12 +21,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.RegisterActivity"
+            android:name=".activities.authentication.RegisterActivity"
             android:label="@string/register"
             android:theme="@style/Theme.TinternShipBackend.NoActionBar">
         </activity>
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".activities.authentication.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/Theme.TinternShipBackend.NoActionBar"></activity>
     </application>
