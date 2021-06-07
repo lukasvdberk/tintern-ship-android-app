@@ -69,6 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    // TODO register as seperate function
     private void showToast(String text) {
         Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
     }
