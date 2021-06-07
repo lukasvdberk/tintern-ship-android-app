@@ -83,17 +83,16 @@
         android:ems="10"
         tools:ignore="LabelFor" />
 
-    <Button
-        android:id="@+id/uploadPictureBtn"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/primary_text_color"
-        android:background="@drawable/rounded_button"
-        android:text="@string/upload_profile_picture" />
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/profilePictureFragment"
+        android:name="com.example.tinternshipbackend.fragments.UploadProfileIcon"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp"
+        android:maxHeight="50dp" />
     <Button
         android:id="@+id/createProfileBtn"
         android:layout_marginTop="20dp"

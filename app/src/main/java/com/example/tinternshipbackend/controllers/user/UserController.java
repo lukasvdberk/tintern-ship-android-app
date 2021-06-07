@@ -1,15 +1,9 @@
 package com.example.tinternshipbackend.controllers.user;
 
 import android.content.Context;
-
 import com.example.tinternshipbackend.controllers.authentication.AuthController;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpClient;
-
 import net.gotev.uploadservice.MultipartUploadRequest;
-import net.gotev.uploadservice.UploadNotificationConfig;
-
-import java.io.FileNotFoundException;
-import java.net.MalformedURLException;
 
 public class UserController {
     Context context;
