@@ -1,32 +1,16 @@
 package com.example.tinternshipbackend.activities.account_management.company;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
-import android.Manifest;
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.tinternshipbackend.R;
-import com.example.tinternshipbackend.activities.MainActivity;
-import com.example.tinternshipbackend.activities.authentication.RegisterActivity;
 import com.example.tinternshipbackend.controllers.company.CompanyController;
-import com.example.tinternshipbackend.controllers.user.UserController;
-import com.example.tinternshipbackend.models.Company;
+import com.example.tinternshipbackend.models.company.Company;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
 import com.example.tinternshipbackend.viewUtil.ToastUtil;
 

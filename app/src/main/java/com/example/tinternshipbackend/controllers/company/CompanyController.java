@@ -2,7 +2,7 @@ package com.example.tinternshipbackend.controllers.company;
 
 import android.content.Context;
 
-import com.example.tinternshipbackend.models.Company;
+import com.example.tinternshipbackend.models.company.Company;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpClient;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
 

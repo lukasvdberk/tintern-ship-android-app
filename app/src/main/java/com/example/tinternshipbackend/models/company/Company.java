@@ -1,4 +1,4 @@
-package com.example.tinternshipbackend.models;
+package com.example.tinternshipbackend.models.company;
 
 public class Company {
     String id;
