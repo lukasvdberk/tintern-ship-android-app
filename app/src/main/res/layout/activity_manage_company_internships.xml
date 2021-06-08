@@ -61,7 +61,7 @@
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/registerAsCompany"
+        android:id="@+id/addInternshipProject"
         android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

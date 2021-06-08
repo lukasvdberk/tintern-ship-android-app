@@ -40,7 +40,7 @@ public class EducationArrayAdapter extends ArrayAdapter<Education> {
         Education education = getItem(position);
         holder.educationName.setText(education.getName());
 
-        return super.getView(position, convertView, parent);
+        return convertView;
     }
 
     private static class EducationViewHolder {
