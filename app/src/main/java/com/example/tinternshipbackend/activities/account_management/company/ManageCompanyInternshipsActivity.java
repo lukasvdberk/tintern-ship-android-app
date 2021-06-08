@@ -51,8 +51,8 @@ public class ManageCompanyInternshipsActivity extends AppCompatActivity {
             @Override
             public void onSuccess(ArrayList<Education> data) {
                 allEducations.addAll(data);
-                ArrayAdapter<Education> adapter = new EducationArrayAdapter(mContext, 0 , allEducations);
-                adapter.setDropDownViewResource(R.layout.education_list_item);
+                EducationArrayAdapter adapter = new EducationArrayAdapter(getApplicationContext(), allEducations);
+
                 educationDropdown.setAdapter(adapter);
             }
 

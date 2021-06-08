@@ -68,4 +68,12 @@
         android:textColor="@color/primary_text_color"
         android:background="@drawable/rounded_button"
         android:text="@string/add_project" />
+
+    <ListView
+        android:id="@+id/companyProjects"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp">
+    </ListView>
 </LinearLayout>
