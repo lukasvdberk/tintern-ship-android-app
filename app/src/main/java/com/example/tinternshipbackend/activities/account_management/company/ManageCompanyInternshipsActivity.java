@@ -5,15 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import com.example.tinternshipbackend.R;
 import com.example.tinternshipbackend.adapters.EducationArrayAdapter;
+import com.example.tinternshipbackend.adapters.ProjectCompanyAdapter;
 import com.example.tinternshipbackend.controllers.education.EducationController;
 import com.example.tinternshipbackend.models.Education;
+import com.example.tinternshipbackend.models.company.Company;
 import com.example.tinternshipbackend.models.company.CompanyProject;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
 import com.example.tinternshipbackend.viewUtil.ToastUtil;
@@ -24,6 +26,8 @@ public class ManageCompanyInternshipsActivity extends AppCompatActivity {
     ArrayList<CompanyProject> companyProjects = new ArrayList<CompanyProject>();
     ArrayList<Education> allEducations = new ArrayList<Education>();
     EducationController educationController;
+    ListView companyProjectsListView;
+    ProjectCompanyAdapter projectsAdapter;
     Spinner educationDropdown;
     Context mContext;
 
@@ -35,7 +39,12 @@ public class ManageCompanyInternshipsActivity extends AppCompatActivity {
 
         this.educationController = new EducationController(this);
         this.mContext = this;
-        educationDropdown = findViewById(R.id.dropdown);
+        this.educationDropdown = findViewById(R.id.dropdown);
+
+        this.companyProjectsListView = (ListView) findViewById(R.id.companyProjects);
+        this.projectsAdapter = new ProjectCompanyAdapter(this,0, companyProjects);
+        companyProjectsListView.setAdapter(projectsAdapter);
+
         setupDrownDown();
         setupListeners();
     }
@@ -68,6 +77,8 @@ public class ManageCompanyInternshipsActivity extends AppCompatActivity {
         String description = ((EditText) findViewById(R.id.aboutTheCompany)).getText().toString();
         Education selectedEducation = allEducations.get(educationDropdown.getSelectedItemPosition());
 
+        CompanyProject project = new CompanyProject(description, selectedEducation, null);
         companyProjects.add(new CompanyProject(description, selectedEducation, null));
+        this.projectsAdapter.add(project);
     }
 }
