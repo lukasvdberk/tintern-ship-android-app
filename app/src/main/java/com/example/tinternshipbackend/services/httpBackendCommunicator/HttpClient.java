@@ -9,20 +9,21 @@ import com.example.tinternshipbackend.controllers.authentication.AuthController;
 import com.google.gson.reflect.TypeToken;
 import com.android.volley.Request;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class HttpClient<T> {
     // TODO set dynamicly from env or something
-    public static String BASE_URL = "https://a4d8bc051558.ngrok.io ";
+    public static String BASE_URL = "https://a4d8bc051558.ngrok.io/";
     Context context;
 
     public HttpClient(Context context) {
         this.context = context;
     }
 
-    public void get(String relativeUrl, HttpResponse<T> httpResponse) {
-        Type type = new TypeToken<Class<T>>(){}.getType();
+    public void get(String relativeUrl, HttpResponse<T> httpResponse, Class clazz) {
+        Type type = TypeToken.getParameterized(clazz).getType();
 
         GsonRequest<T> request = new GsonRequest<T>(
                 getUrl(relativeUrl),
@@ -37,6 +38,27 @@ public class HttpClient<T> {
                 new Response.ErrorListener(){
                     @Override
                     public void onErrorResponse(VolleyError error){
+                        httpResponse.onError(error.getMessage());
+                    }
+                }
+        );
+        VolleyHelper.getInstance(context).addToRequestQueue(request);
+    }
+
+    public void getList(String relativeUrl, HttpResponse<ArrayList<Object>> httpResponse) {
+        GsonRequest<ArrayList<Object>> request = new GsonRequest<ArrayList<Object>>(
+                getUrl(relativeUrl),
+                ArrayList.class,
+                getHeaders(),
+                new Response.Listener<ArrayList<Object>>() {
+                    @Override
+                    public void onResponse(ArrayList<Object> response) {
+                        httpResponse.onSuccess(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
                         httpResponse.onError(error.getMessage());
                     }
                 }

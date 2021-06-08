@@ -5,6 +5,10 @@ import android.content.Context;
 import com.example.tinternshipbackend.models.Education;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpClient;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
+import com.google.gson.internal.LinkedTreeMap;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EducationController {
     Context context;
@@ -13,7 +17,24 @@ public class EducationController {
         this.context = context;
     }
 
-    public void getAllEducations(HttpResponse<Education[]> onResponse) {
-        new HttpClient<Education[]>(context).get("educations/", onResponse);
+    public void getAllEducations(HttpResponse<ArrayList<Education>> onResponse) {
+        HttpResponse<ArrayList<Object>> parseResponse = new HttpResponse<ArrayList<Object>>() {
+            @Override
+            public void onSuccess(ArrayList<Object> data) {
+                // TODO refactor this by doing it automatically
+                ArrayList<Education> educations = new ArrayList<Education>();
+                for(Object object: data) {
+                    LinkedTreeMap<Object,Object> t = (LinkedTreeMap) object;
+                    educations.add(new Education(t.get("id").toString(), t.get("name").toString()));
+                }
+                onResponse.onSuccess(educations);
+            }
+
+            @Override
+            public void onError(String error) {
+                onResponse.onError(error);
+            }
+        };
+        new HttpClient<ArrayList<Object>>(context).getList("educations/", parseResponse);
     }
 }
