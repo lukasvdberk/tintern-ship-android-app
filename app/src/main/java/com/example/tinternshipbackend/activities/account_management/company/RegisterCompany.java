@@ -1,4 +1,4 @@
-package com.example.tinternshipbackend.activities.account_management;
+package com.example.tinternshipbackend.activities.account_management.company;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.tinternshipbackend.R;
 import com.example.tinternshipbackend.activities.MainActivity;
+import com.example.tinternshipbackend.activities.authentication.RegisterActivity;
 import com.example.tinternshipbackend.controllers.company.CompanyController;
 import com.example.tinternshipbackend.controllers.user.UserController;
 import com.example.tinternshipbackend.models.Company;
@@ -61,6 +62,8 @@ public class RegisterCompany extends AppCompatActivity {
         this.companyController.saveCompany(company, new HttpResponse<Company>() {
             @Override
             public void onSuccess(Company data) {
+                Intent intent = new Intent(mContext, ManageCompanyInternshipsActivity.class);
+                startActivity(intent);
                 ToastUtil.showLongToast(mContext, "Company information was saved!");
             }
 

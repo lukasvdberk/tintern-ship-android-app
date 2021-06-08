@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.tinternshipbackend.R;
-import com.example.tinternshipbackend.activities.account_management.RegisterCompany;
 import com.example.tinternshipbackend.controllers.user.UserController;
 import com.example.tinternshipbackend.viewUtil.ToastUtil;
 

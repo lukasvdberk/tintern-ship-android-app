@@ -4,48 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.account_management.company.RegisterCompany"
+    tools:context=".activities.account_management.company.ManageCompanyInternshipsActivity"
     android:background="@color/secondary_color"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     android:orientation="vertical"
     android:gravity="center_horizontal">
     <TextView
         android:layout_margin="10dp"
-        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/primary_text_color"
         android:textSize="26sp"
         android:textStyle="bold"
-        android:text="@string/create_profile" />
-    <TextView
-        android:layout_marginLeft="20dp"
-        android:layout_gravity="left|center_vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/company_name"
-        android:textColor="@color/primary_text_color"
-        android:textSize="20sp" />
+        android:text="@string/internship_description" />
 
-    <EditText
-        android:id="@+id/companyName"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:autofillHints="@string/company_name"
-        android:background="@drawable/rounded_primary_text_color"
-        android:theme="@style/MyEditTextTheme"
-        android:ems="10"
-        tools:ignore="LabelFor" />
 
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_gravity="left|center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/about_the_company"
+        android:text="@string/internship_description"
         android:textColor="@color/primary_text_color"
         android:textSize="20sp" />
 
@@ -56,51 +35,37 @@
         android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:autofillHints="@string/email"
         android:background="@drawable/rounded_primary_text_color"
         android:theme="@style/MyEditTextTheme"
         android:ems="10"
         tools:ignore="LabelFor" />
+
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_gravity="left|center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/phone_number"
+        android:text="@string/searched_education"
         android:textColor="@color/primary_text_color"
         android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/companyPhoneNumber"
+    <Spinner
+        android:id="@+id/dropdown"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:autofillHints="@string/phone_number"
-        android:background="@drawable/rounded_primary_text_color"
-        android:theme="@style/MyEditTextTheme"
-        android:ems="10"
-        tools:ignore="LabelFor" />
+        android:text="@string/internship_description"
+        android:textColor="@color/primary_text_color"
+        android:background="@color/primary_color"
+        android:layout_height="wrap_content" />
 
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/profilePictureFragment"
-        android:name="com.example.tinternshipbackend.fragments.UploadProfileIcon"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="40dp"
-        android:maxHeight="50dp" />
     <Button
-        android:id="@+id/createProfileBtn"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:id="@+id/registerAsCompany"
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/primary_text_color"
         android:background="@drawable/rounded_button"
-        android:text="@string/create_profile" />
+        android:text="@string/add_project" />
 </LinearLayout>

@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,14 +17,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TinternShipBackend.NoActionBar">
         <activity
-            android:name=".activities.account_management.RegisterCompany"
-            android:label="@string/looking_for"
-            android:theme="@style/Theme.TinternShipBackend.NoActionBar" >
+            android:name=".activities.account_management.company.ManageCompanyInternshipsActivity"
+            android:label="@string/manage_jobs"
+            android:theme="@style/Theme.TinternShipBackend.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.account_management.company.RegisterCompany"
+            android:label="@string/looking_for"
+            android:theme="@style/Theme.TinternShipBackend.NoActionBar">
+
         </activity>
         <activity
             android:name=".activities.account_management.RegisterIntern"
