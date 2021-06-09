@@ -43,7 +43,12 @@ public class ManageCompanyInternshipsActivity extends AppCompatActivity {
 
         this.companyProjectsListView = (ListView) findViewById(R.id.companyProjects);
         this.projectsAdapter = new ProjectCompanyAdapter(this,0, companyProjects);
+        this.projectsAdapter.onClose(project -> {
+            companyProjects.remove(project);
+            projectsAdapter.remove(project);
+        });
         companyProjectsListView.setAdapter(projectsAdapter);
+
 
         setupDrownDown();
         setupListeners();
@@ -78,7 +83,7 @@ public class ManageCompanyInternshipsActivity extends AppCompatActivity {
         Education selectedEducation = allEducations.get(educationDropdown.getSelectedItemPosition());
 
         CompanyProject project = new CompanyProject(description, selectedEducation, null);
-        companyProjects.add(new CompanyProject(description, selectedEducation, null));
+        companyProjects.add(project);
         this.projectsAdapter.add(project);
     }
 }
