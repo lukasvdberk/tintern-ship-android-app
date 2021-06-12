@@ -32,7 +32,11 @@ public class EducationController {
 
             @Override
             public void onError(String error) {
-                onResponse.onError(error);
+                if(error != null) {
+                    onResponse.onError(error);
+                } else {
+                    onResponse.onError("An network activity occurred");
+                }
             }
         };
         new HttpClient<ArrayList<Object>>(context).getList("educations/", parseResponse);

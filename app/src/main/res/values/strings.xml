@@ -10,8 +10,10 @@
     <string name="looking_for">I am looking for a</string>
 
     <string name="internship_description">Internship job description</string>
+    <string name="your_education">Your education</string>
     <string name="searched_education">Education were looking for</string>
     <string name="add_project">Add internship job description</string>
+    <string name="company_name">Company name</string>
 
     <string name="manage_jobs">Add jobs</string>
     <string name="internship">Internship</string>
@@ -20,7 +22,9 @@
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="create_profile">Create profile</string>
-    <string name="company_name">Company name</string>
+    <string name="name">Name</string>
+    <string name="age">Age</string>
+    <string name="about_myself">About my self</string>
     <string name="about_the_company">About the company</string>
     <string name="phone_number">Phone number</string>
     <string name="upload_profile_picture">Upload profile picture</string>

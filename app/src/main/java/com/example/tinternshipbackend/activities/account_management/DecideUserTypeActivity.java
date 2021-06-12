@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import com.example.tinternshipbackend.R;
 import com.example.tinternshipbackend.activities.account_management.company.RegisterCompany;
+import com.example.tinternshipbackend.activities.account_management.intern.RegisterIntern;
 
 public class DecideUserTypeActivity extends AppCompatActivity {
 
