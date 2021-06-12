@@ -115,7 +115,7 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/companyPhoneNumber"
+        android:id="@+id/internPhoneNumber"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
