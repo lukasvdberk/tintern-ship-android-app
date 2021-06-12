@@ -19,6 +19,26 @@
         android:textSize="26sp"
         android:textStyle="bold"
         android:text="@string/create_profile" />
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="left|center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        android:textColor="@color/primary_text_color"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/internName"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/rounded_primary_text_color"
+        android:theme="@style/MyEditTextTheme"
+        android:ems="10"
+        tools:ignore="LabelFor" />
 
     <TextView
         android:layout_marginLeft="20dp"
@@ -36,27 +56,7 @@
         android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@drawable/rounded_primary_text_color"
-        android:theme="@style/MyEditTextTheme"
-        android:ems="10"
-        tools:ignore="LabelFor" />
-
-    <TextView
-        android:layout_marginLeft="20dp"
-        android:layout_gravity="left|center_vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name"
-        android:textColor="@color/primary_text_color"
-        android:textSize="20sp" />
-
-    <EditText
-        android:id="@+id/companyName"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:inputType="number"
         android:background="@drawable/rounded_primary_text_color"
         android:theme="@style/MyEditTextTheme"
         android:ems="10"
@@ -73,7 +73,7 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/aboutTheCompany"
+        android:id="@+id/aboutMySelf"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -84,6 +84,27 @@
         android:theme="@style/MyEditTextTheme"
         android:ems="10"
         tools:ignore="LabelFor" />
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="left|center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/searched_education"
+        android:textColor="@color/primary_text_color"
+        android:textSize="20sp" />
+
+    <Spinner
+        android:id="@+id/educationDropdown"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:text="@string/internship_description"
+        android:textColor="@color/primary_text_color"
+        android:background="@color/primary_color"
+        android:layout_height="wrap_content" />
+
+
     <TextView
         android:layout_marginLeft="20dp"
         android:layout_gravity="left|center_vertical"
@@ -100,6 +121,7 @@
         android:layout_marginRight="20dp"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:inputType="phone"
         android:autofillHints="@string/phone_number"
         android:background="@drawable/rounded_primary_text_color"
         android:theme="@style/MyEditTextTheme"
@@ -118,7 +140,7 @@
         android:maxHeight="50dp" />
 
     <Button
-        android:id="@+id/createProfileBtn"
+        android:id="@+id/createInternProfileBtn"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
