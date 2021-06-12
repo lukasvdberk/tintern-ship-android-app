@@ -1,9 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.account_management.intern.RegisterIntern">
+    tools:context=".activities.account_management.intern.RegisterIntern"
+    android:background="@color/secondary_color"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_margin="10dp"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary_text_color"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:text="@string/create_profile" />
+
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="left|center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/age"
+        android:textColor="@color/primary_text_color"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/internAge"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/rounded_primary_text_color"
+        android:theme="@style/MyEditTextTheme"
+        android:ems="10"
+        tools:ignore="LabelFor" />
+
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="left|center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        android:textColor="@color/primary_text_color"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/companyName"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/rounded_primary_text_color"
+        android:theme="@style/MyEditTextTheme"
+        android:ems="10"
+        tools:ignore="LabelFor" />
+
+
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="left|center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/about_myself"
+        android:textColor="@color/primary_text_color"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/aboutTheCompany"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:autofillHints="@string/email"
+        android:background="@drawable/rounded_primary_text_color"
+        android:theme="@style/MyEditTextTheme"
+        android:ems="10"
+        tools:ignore="LabelFor" />
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="left|center_vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/phone_number"
+        android:textColor="@color/primary_text_color"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/companyPhoneNumber"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:autofillHints="@string/phone_number"
+        android:background="@drawable/rounded_primary_text_color"
+        android:theme="@style/MyEditTextTheme"
+        android:ems="10"
+        tools:ignore="LabelFor" />
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/profilePictureFragment"
+        android:name="com.example.tinternshipbackend.fragments.UploadProfileIcon"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp"
+        android:maxHeight="50dp" />
+
+    <Button
+        android:id="@+id/createProfileBtn"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary_text_color"
+        android:background="@drawable/rounded_button"
+        android:text="@string/create_profile" />
+</LinearLayout>
