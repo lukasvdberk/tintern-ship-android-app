@@ -1,4 +1,4 @@
-package com.example.tinternshipbackend.activities.account_management;
+package com.example.tinternshipbackend.activities.account_management.intern;
 
 import androidx.appcompat.app.AppCompatActivity;
 
