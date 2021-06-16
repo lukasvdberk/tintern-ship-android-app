@@ -25,12 +25,12 @@ public class DecideUserTypeActivity extends AppCompatActivity {
         Button registerAsCompanyBtn = findViewById(R.id.registerAsCompany);
 
         registerAsInternBtn.setOnClickListener(v -> {
-            Intent registerAsInternIntent = new Intent(this, RegisterIntern.class);
+            Intent registerAsInternIntent = new Intent(this, RegisterCompany.class);
             startActivity(registerAsInternIntent);
         });
 
         registerAsCompanyBtn.setOnClickListener(v -> {
-            Intent registerAsCompanyIntent = new Intent(this, RegisterCompany.class);
+            Intent registerAsCompanyIntent = new Intent(this, RegisterIntern.class);
             startActivity(registerAsCompanyIntent);
         });
     }

@@ -47,6 +47,7 @@ public class RegisterCompany extends AppCompatActivity {
             @Override
             public void onSuccess(Company data) {
                 Intent intent = new Intent(mContext, ManageCompanyInternshipsActivity.class);
+                intent.putExtra("company", data);
                 startActivity(intent);
                 ToastUtil.showLongToast(mContext, "Company information was saved!");
             }
