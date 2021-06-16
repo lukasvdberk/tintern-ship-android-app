@@ -1,6 +1,8 @@
 package com.example.tinternshipbackend.models.company;
 
-public class Company {
+import java.io.Serializable;
+
+public class Company implements Serializable {
     String id;
     String name;
     String description;

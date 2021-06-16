@@ -67,6 +67,16 @@
         android:textColor="@color/primary_text_color"
         android:background="@drawable/rounded_button"
         android:text="@string/add_project" />
+
+    <Button
+        android:id="@+id/saveProjectChanges"
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/primary_text_color"
+        android:background="@drawable/rounded_button"
+        android:text="@string/save_changes" />
+
     <ListView
         android:id="@+id/companyProjects"
         android:layout_width="match_parent"

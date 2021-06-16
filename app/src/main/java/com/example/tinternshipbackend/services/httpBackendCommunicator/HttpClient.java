@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class HttpClient<T> {
     // TODO set dynamicly from env or something
-    public static String BASE_URL = "https://6c4e350ea04c.ngrok.io/";
+    public static String BASE_URL = "https://b89875f3aa1a.ngrok.io/";
     Context context;
 
     public HttpClient(Context context) {
@@ -53,6 +53,27 @@ public class HttpClient<T> {
                 new Response.Listener<ArrayList<Object>>() {
                     @Override
                     public void onResponse(ArrayList<Object> response) {
+                        httpResponse.onSuccess(response);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        httpResponse.onError(error.getMessage());
+                    }
+                }
+        );
+        VolleyHelper.getInstance(context).addToRequestQueue(request);
+    }
+
+    public void getList(String relativeUrl, HttpResponse<T> httpResponse, Type type) {
+        GsonRequest<T> request = new GsonRequest<T>(
+                getUrl(relativeUrl),
+                type,
+                getHeaders(),
+                new Response.Listener<T>() {
+                    @Override
+                    public void onResponse(T response) {
                         httpResponse.onSuccess(response);
                     }
                 },

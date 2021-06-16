@@ -3,6 +3,7 @@ package com.example.tinternshipbackend.models.company;
 import com.example.tinternshipbackend.models.Education;
 
 public class CompanyProject {
+    String id;
     String description;
     Education education;
     Company company;
