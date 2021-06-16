@@ -118,7 +118,6 @@ public class ManageCompanyInternshipsActivity extends AppCompatActivity {
         Education selectedEducation = allEducations.get(educationDropdown.getSelectedItemPosition());
 
         CompanyProject project = new CompanyProject(description, selectedEducation, projectsForCompany);
-        companyProjects.add(project);
         this.projectsAdapter.add(project);
     }
 
@@ -128,6 +127,7 @@ public class ManageCompanyInternshipsActivity extends AppCompatActivity {
             @Override
             public void onSuccess(SaveCompanyProject data) {
                 ToastUtil.showLongToast(mContext, "Project company saved");
+
                 requestsMade++;
 
                 if(requestsMade == companyProjects.size()) {
@@ -142,7 +142,6 @@ public class ManageCompanyInternshipsActivity extends AppCompatActivity {
                 requestsMade++;
             }
         };
-
         for(CompanyProject project : companyProjects) {
             this.companyController.addCompanyProject(project, companyProjectSaved);
         }
