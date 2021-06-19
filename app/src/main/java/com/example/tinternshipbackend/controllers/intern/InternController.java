@@ -20,6 +20,4 @@ public class InternController {
 
         new HttpClient<InternHttp>(context).post("interns/user", internHttp, onResponse, InternHttp.class);
     }
-
-
 }
