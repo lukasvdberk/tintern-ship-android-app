@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import com.example.tinternshipbackend.R;
 import com.example.tinternshipbackend.activities.MainActivity;
 import com.example.tinternshipbackend.activities.authentication.LoginActivity;
+import com.example.tinternshipbackend.activities.like.LikeUser;
 import com.example.tinternshipbackend.adapters.EducationArrayAdapter;
 import com.example.tinternshipbackend.controllers.education.EducationController;
 import com.example.tinternshipbackend.controllers.intern.InternController;
@@ -81,7 +82,7 @@ public class RegisterIntern extends AppCompatActivity {
         this.internController.saveIntern(intern, new HttpResponse<InternHttp>() {
             @Override
             public void onSuccess(InternHttp data) {
-                Intent mainActivity = new Intent(mContext, MainActivity.class);
+                Intent mainActivity = new Intent(mContext, LikeUser.class);
                 startActivity(mainActivity);
                 ToastUtil.showLongToast(mContext, "Intern information saved!");
             }
@@ -91,5 +92,7 @@ public class RegisterIntern extends AppCompatActivity {
                 ToastUtil.showLongToast(mContext, "Failed to save as an intern");
             }
         });
+
+
     }
 }
