@@ -14,6 +14,7 @@ import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -46,5 +47,11 @@ public class CompanyController {
         Type type = new TypeToken<ArrayList<CompanyProject>>() {}.getType();
         new HttpClient<ArrayList<CompanyProject>>(context)
                 .getList("companies/internship-project/" + company.getId(), onResponse, type);
+    }
+
+    public void getAllCompanies(HttpResponse<ArrayList<Company>> onResponse ) {
+        Type type = new TypeToken<ArrayList<Company>>() {}.getType();
+        new HttpClient<ArrayList<Company>>(context)
+                .getList("companies", onResponse, type);
     }
 }
