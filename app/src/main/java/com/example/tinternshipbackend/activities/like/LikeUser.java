@@ -33,26 +33,10 @@ public class LikeUser extends AppCompatActivity {
         this.companyController = new CompanyController(this);
         this.authController = new AuthController(this);
         this.mContext = this;
-//        getListOfAllCompanies();
-
-        companyController.getAllCompanies(new HttpResponse<ArrayList<Company>>() {
-            @Override
-            public void onSuccess(ArrayList<Company> data) {
-                listOfCompanies.addAll(data);
-            }
-
-            @Override
-            public void onError(String error) {
-                System.out.println("ER GAAT IETS FOUT I GUESS");
-                System.out.println(error);
-            }
-        });
-
+        getListOfAllCompanies();
         setupListeners();
-
-
-
     }
+
     private void setupListeners() {
         Button likeButton = (Button) findViewById(R.id.likeBtn);
         Button dislikeButton = (Button) findViewById(R.id.dislikeBtn);
@@ -76,8 +60,21 @@ public class LikeUser extends AppCompatActivity {
     }
 
     private void like() {
+        if(index < listOfCompanies.size()) {
+            Company company = listOfCompanies.get(index);
 
-        System.out.println(listOfCompanies);
+//            Company company = new Company(
+//                    listOfCompanies.get(index).getId(),
+//                    listOfCompanies.get(index).getName(),
+//                    listOfCompanies.get(index).getDescription(),
+//                    listOfCompanies.get(index).getPhoneNumber()
+//            );
+
+            System.out.println(company);
+//            System.out.println(listOfCompanies.get(index).getId());
+            index += 1;
+        }
+
 //        this.index += 1;
 //
 //        System.out.println(this.index);
