@@ -57,7 +57,8 @@ public class CompanyController {
     }
 
     public void getCompanyByCompanyId(String companyId, HttpResponse<Company> onResponse) {
-        new HttpClient<Company>(context).get("/companies/user/" + companyId, onResponse, Company.class);
+        System.out.println(companyId);
+        new HttpClient<Company>(context).get("/companies/company/" + companyId, onResponse, Company.class);
     }
 
     public void getIntern(String userId, HttpResponse<Intern> onResponse) {

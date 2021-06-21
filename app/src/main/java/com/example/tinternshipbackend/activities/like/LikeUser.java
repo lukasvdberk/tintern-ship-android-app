@@ -105,16 +105,14 @@ public class LikeUser extends AppCompatActivity {
 
     private void setupListeners() {
 
-        getCompanyBelongingToProject();
-
         TextView name = (TextView) findViewById(R.id.name);
         name.setText(company.getName());
 
         TextView age = (TextView) findViewById(R.id.age);
-        age.setText(intern.getAgeAsAString());
+        age.setText(listOfProjects.get(index).getEducationId());
 
         TextView description = (TextView) findViewById(R.id.description);
-        description.setText(intern.getDescription());
+        description.setText(listOfProjects.get(index).getDescription());
 
         Button likeButton = (Button) findViewById(R.id.likeBtn);
         Button dislikeButton = (Button) findViewById(R.id.dislikeBtn);
@@ -124,7 +122,7 @@ public class LikeUser extends AppCompatActivity {
     }
 
     private void getCompanyBelongingToProject() {
-        companyController.getCompanyByCompanyId(listOfProjects.get(0).getCompanyId(), new HttpResponse<Company>() {
+        companyController.getCompanyByCompanyId(listOfProjects.get(index).getCompanyId(), new HttpResponse<Company>() {
             @Override
             public void onSuccess(Company data) {
                 company = data;
@@ -139,12 +137,11 @@ public class LikeUser extends AppCompatActivity {
     }
 
     private void like() {
-        index += 1;
-        getCompanyBelongingToProject();
-        if(index < listOfProjects.size()) {
-//            CompanyProject project = listOfProjects.get(index);
-//            getCompanyBelongingToProject();
-//            index += 1;
+        if(index + 1 < listOfProjects.size()) {
+            index += 1;
+            System.out.println(listOfProjects.size());
+            System.out.println(index);
+            getCompanyBelongingToProject();
         }
     }
 
