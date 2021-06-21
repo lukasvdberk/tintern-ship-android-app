@@ -57,6 +57,8 @@ public class LikeUser extends AppCompatActivity {
 
         getMe();
 
+        getAllFittingInternshipProjects();
+
 
     }
 
@@ -80,7 +82,6 @@ public class LikeUser extends AppCompatActivity {
             @Override
             public void onSuccess(Intern data) {
                 intern = data;
-                getAllFittingInternshipProjects();
             }
 
             @Override
@@ -107,18 +108,20 @@ public class LikeUser extends AppCompatActivity {
     }
 
     private void getCompanyBelongingToProject() {
-        companyController.getCompanyByCompanyId(listOfProjects.get(index).getCompanyId(), new HttpResponse<Company>() {
-            @Override
-            public void onSuccess(Company data) {
-                company = data;
-                setupListeners();
-            }
+        if(index < listOfProjects.size()) {
+            companyController.getCompanyByCompanyId(listOfProjects.get(index).getCompanyId(), new HttpResponse<Company>() {
+                @Override
+                public void onSuccess(Company data) {
+                    company = data;
+                    setupListeners();
+                }
 
-            @Override
-            public void onError(String error) {
+                @Override
+                public void onError(String error) {
 
-            }
-        });
+                }
+            });
+        }
     }
 
 
@@ -142,11 +145,10 @@ public class LikeUser extends AppCompatActivity {
 
 
     private void like() {
-        saveLike();
-
-        if(index + 1 < listOfProjects.size()) {
-
+        if(index < listOfProjects.size()) {
             index += 1;
+
+            saveLike();
 
             getCompanyBelongingToProject();
         }
