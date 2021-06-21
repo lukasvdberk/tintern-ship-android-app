@@ -10,9 +10,11 @@ import com.example.tinternshipbackend.R;
 import com.example.tinternshipbackend.controllers.Like.LikeController;
 import com.example.tinternshipbackend.controllers.authentication.AuthController;
 import com.example.tinternshipbackend.controllers.company.CompanyController;
+import com.example.tinternshipbackend.controllers.intern.InternController;
 import com.example.tinternshipbackend.controllers.user.UserController;
 import com.example.tinternshipbackend.models.User;
 import com.example.tinternshipbackend.models.company.Company;
+import com.example.tinternshipbackend.models.intern.Intern;
 import com.example.tinternshipbackend.responses.authentication.LoginResponse;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
 
@@ -24,6 +26,10 @@ public class LikeUser extends AppCompatActivity {
     private CompanyController companyController;
     private UserController userController;
     private AuthController authController;
+    private InternController internController;
+    private User user;
+    private Intern intern;
+
     private int index = 0;
     private Context mContext;
     private List<Company> listOfCompanies = new ArrayList<>();
@@ -37,11 +43,22 @@ public class LikeUser extends AppCompatActivity {
         this.companyController = new CompanyController(this);
         this.authController = new AuthController(this);
         this.userController = new UserController(this);
+        this.internController = new InternController(this);
+        this.mContext = this;
 
-        userController.getMe(new HttpResponse<User>() {
+        getMe();
+        getListOfAllCompanies();
+
+        setupListeners();
+
+    }
+
+    private void getIntern() {
+        internController.getIntern(user.getId(), new HttpResponse<Intern>() {
             @Override
-            public void onSuccess(User data) {
-                System.out.println(data.getId());
+            public void onSuccess(Intern data) {
+                intern = data;
+                System.out.println(intern);
             }
 
             @Override
@@ -49,9 +66,21 @@ public class LikeUser extends AppCompatActivity {
                 System.out.println(error);
             }
         });
-        this.mContext = this;
-        getListOfAllCompanies();
-        setupListeners();
+    }
+
+    private void getMe() {
+        userController.getMe(new HttpResponse<User>() {
+            @Override
+            public void onSuccess(User data) {
+                user = data;
+                getIntern();
+            }
+
+            @Override
+            public void onError(String error) {
+                System.out.println(error);
+            }
+        });
     }
 
     private void setupListeners() {
