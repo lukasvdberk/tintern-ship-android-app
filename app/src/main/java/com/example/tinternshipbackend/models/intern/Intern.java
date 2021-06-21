@@ -4,26 +4,30 @@ import com.example.tinternshipbackend.models.Education;
 
 public class Intern {
     String id;
+    String userId;
+    String educationId;
     String name;
     int age;
     String description;
     String phoneNumber;
-    Education education;
-    public Intern(String name, int age, String description, String phoneNumber, Education education) {
+    public Intern(String userId, String educationId, String name, int age, String description, String phoneNumber) {
+        this.userId = userId;
+        this.educationId = educationId;
         this.name = name;
         this.age = age;
         this.description = description;
         this.phoneNumber = phoneNumber;
-        this.education = education;
+        this.educationId = educationId;
     }
 
-    public Intern(String id, String name, int age, String description, String phoneNumber, Education education) {
+    public Intern(String id, String userId, String educationId, String name, int age, String description, String phoneNumber, Education education) {
         this.id = id;
+        this.userId = userId;
+        this.educationId = educationId;
         this.name = name;
         this.age = age;
         this.description = description;
         this.phoneNumber = phoneNumber;
-        this.education = education;
     }
 
     public String getId() {
@@ -46,6 +50,10 @@ public class Intern {
         return age;
     }
 
+    public String getAgeAsAString() {
+        return Integer.toString(age);
+    }
+
     public void setAge(int age) {
         this.age = age;
     }
@@ -66,11 +74,19 @@ public class Intern {
         this.phoneNumber = phoneNumber;
     }
 
-    public Education getEducation() {
-        return education;
+    public String getEducationId() {
+        return educationId;
     }
 
-    public void setEducation(Education education) {
-        this.education = education;
+    public void setEducationId(String educationId) {
+        this.educationId = educationId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId() {
+        this.userId = userId;
     }
 }

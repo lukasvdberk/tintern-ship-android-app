@@ -2,7 +2,11 @@ package com.example.tinternshipbackend.controllers.user;
 
 import android.content.Context;
 import com.example.tinternshipbackend.controllers.authentication.AuthController;
+import com.example.tinternshipbackend.models.User;
+import com.example.tinternshipbackend.responses.like.LikeHttp;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpClient;
+import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
+
 import net.gotev.uploadservice.MultipartUploadRequest;
 
 public class UserController {
@@ -27,5 +31,8 @@ public class UserController {
         } catch (Exception ignored) {
             return false;
         }
+    }
+    public void getMe(HttpResponse<User> onResponse) {
+        new HttpClient<User>(context).get("users/me", onResponse, User.class);
     }
 }

@@ -11,13 +11,14 @@
     android:gravity="center_vertical|center_horizontal">
 
     <TextView
-        android:layout_margin="20dp"
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="@string/looking_for"
         android:textColor="@color/primary_text_color"
-        android:textSize="26sp"
-        android:text="@string/looking_for" />
+        android:textSize="26sp" />
+
     <Button
         android:id="@+id/registerAsCompany"
         android:layout_margin="20dp"

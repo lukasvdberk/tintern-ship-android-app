@@ -7,6 +7,8 @@
     <string name="next">Next</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="like">Like</string>
+    <string name="dislike">Dislike</string>
     <string name="looking_for">I am looking for a</string>
 
     <string name="internship_description">Internship job description</string>

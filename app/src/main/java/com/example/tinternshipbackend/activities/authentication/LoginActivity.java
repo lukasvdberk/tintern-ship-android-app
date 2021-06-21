@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         String email = ((EditText)findViewById(R.id.emailEdit)).getText().toString();
         String password = ((EditText)findViewById(R.id.editTextTextPassword)).getText().toString();
 
-        User user = new User(email, password);
+        User user = new User(null, email, password);
         loginController.login(user, new HttpResponse<LoginResponse>() {
             @Override
             public void onSuccess(LoginResponse data) {

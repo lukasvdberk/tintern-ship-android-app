@@ -13,10 +13,13 @@ import android.widget.Spinner;
 import com.example.tinternshipbackend.R;
 import com.example.tinternshipbackend.activities.MainActivity;
 import com.example.tinternshipbackend.activities.authentication.LoginActivity;
+import com.example.tinternshipbackend.activities.like.LikeUser;
 import com.example.tinternshipbackend.adapters.EducationArrayAdapter;
 import com.example.tinternshipbackend.controllers.education.EducationController;
 import com.example.tinternshipbackend.controllers.intern.InternController;
+import com.example.tinternshipbackend.controllers.user.UserController;
 import com.example.tinternshipbackend.models.Education;
+import com.example.tinternshipbackend.models.User;
 import com.example.tinternshipbackend.models.intern.Intern;
 import com.example.tinternshipbackend.responses.intern.InternHttp;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
@@ -29,6 +32,8 @@ public class RegisterIntern extends AppCompatActivity {
     Context mContext;
     EducationController educationController;
     InternController internController;
+    UserController userController;
+    User user;
 
     ArrayList<Education> allEducations = new ArrayList<Education>();
 
@@ -39,8 +44,10 @@ public class RegisterIntern extends AppCompatActivity {
 
         this.educationController = new EducationController(this);
         this.internController = new InternController(this);
+        this.userController = new UserController(this);
         this.mContext = this;
 
+        getMe();
         setupDrownDown();
         setupListeners();
     }
@@ -70,6 +77,20 @@ public class RegisterIntern extends AppCompatActivity {
         });
     }
 
+    private void getMe() {
+        userController.getMe(new HttpResponse<User>() {
+            @Override
+            public void onSuccess(User data) {
+                user = data;
+            }
+
+            @Override
+            public void onError(String error) {
+                System.out.println(error);
+            }
+        });
+    }
+
     private void saveIntern() {
         String name = ((EditText) findViewById(R.id.internName)).getText().toString();
         int age = Integer.parseInt(((EditText) findViewById(R.id.internAge)).getText().toString());
@@ -77,11 +98,11 @@ public class RegisterIntern extends AppCompatActivity {
         String internPhoneNumber = ((EditText) findViewById(R.id.internPhoneNumber)).getText().toString();
         Education selectedEducation = allEducations.get(educationDropdown.getSelectedItemPosition());
 
-        Intern intern = new Intern(name, age, aboutMySelf, internPhoneNumber, selectedEducation);
+        Intern intern = new Intern(user.getId(), selectedEducation.getId(), name, age, aboutMySelf, internPhoneNumber);
         this.internController.saveIntern(intern, new HttpResponse<InternHttp>() {
             @Override
             public void onSuccess(InternHttp data) {
-                Intent mainActivity = new Intent(mContext, MainActivity.class);
+                Intent mainActivity = new Intent(mContext, LikeUser.class);
                 startActivity(mainActivity);
                 ToastUtil.showLongToast(mContext, "Intern information saved!");
             }
@@ -91,5 +112,7 @@ public class RegisterIntern extends AppCompatActivity {
                 ToastUtil.showLongToast(mContext, "Failed to save as an intern");
             }
         });
+
+
     }
 }

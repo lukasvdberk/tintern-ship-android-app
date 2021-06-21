@@ -5,7 +5,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.content.Context;
 
-public class ExpandableHeightListView extends ListView
+public class
+ExpandableHeightListView extends ListView
 {
 
     boolean expanded = false;

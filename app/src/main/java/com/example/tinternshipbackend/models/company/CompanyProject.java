@@ -5,13 +5,13 @@ import com.example.tinternshipbackend.models.Education;
 public class CompanyProject {
     String id;
     String description;
-    Education education;
-    Company company;
+    String educationId;
+    String companyId;
 
-    public CompanyProject(String description, Education education, Company company) {
+    public CompanyProject(String description, String educationId, String companyId) {
         this.description = description;
-        this.education = education;
-        this.company = company;
+        this.educationId = educationId;
+        this.companyId = companyId;
     }
 
     public String getDescription() {
@@ -22,19 +22,19 @@ public class CompanyProject {
         this.description = description;
     }
 
-    public Education getEducation() {
-        return education;
+    public String  getEducationId() {
+        return educationId;
     }
 
-    public void setEducation(Education education) {
-        this.education = education;
+    public void setEducationId(String educationId) {
+        this.educationId = educationId;
     }
 
-    public Company getCompany() {
-        return company;
+    public String getCompanyId() {
+        return companyId;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setCompany(String companyId) {
+        this.companyId = companyId;
     }
 }

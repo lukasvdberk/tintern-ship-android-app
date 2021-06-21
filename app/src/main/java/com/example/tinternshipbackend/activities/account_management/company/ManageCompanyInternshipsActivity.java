@@ -117,7 +117,7 @@ public class ManageCompanyInternshipsActivity extends AppCompatActivity {
         String description = ((EditText) findViewById(R.id.aboutTheCompany)).getText().toString();
         Education selectedEducation = allEducations.get(educationDropdown.getSelectedItemPosition());
 
-        CompanyProject project = new CompanyProject(description, selectedEducation, projectsForCompany);
+        CompanyProject project = new CompanyProject(description, selectedEducation.getId(), projectsForCompany.getId());
         this.projectsAdapter.add(project);
     }
 

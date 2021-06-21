@@ -4,17 +4,13 @@ import java.io.Serializable;
 
 public class Company implements Serializable {
     String id;
+    String userId;
     String name;
     String description;
     String phoneNumber;
 
-    public Company(String id, String name, String description, String phoneNumber) {
-        this.name = name;
-        this.description = description;
-        this.phoneNumber = phoneNumber;
-    }
-
-    public Company(String name, String description, String phoneNumber) {
+    public Company(String userId, String name, String description, String phoneNumber) {
+        this.userId = userId;
         this.name = name;
         this.description = description;
         this.phoneNumber = phoneNumber;
@@ -50,5 +46,13 @@ public class Company implements Serializable {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }
