@@ -1,7 +1,6 @@
 package com.example.tinternshipbackend.models;
 
 public class Like {
-    String id;
     String fromUserId;
     String toUserId;
     boolean hasLiked;
@@ -12,20 +11,13 @@ public class Like {
         this.hasLiked = hasLiked;
     }
 
-    public Like(String id, String fromUserId, String toUserId, boolean hasLiked) {
-        this.id = id;
-        this.fromUserId = fromUserId;
-        this.toUserId = toUserId;
-        this.hasLiked = hasLiked;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+//    public String getId() {
+//        return id;
+//    }
+//
+//    public void setId(String id) {
+//        this.id = id;
+//    }
 
     public String getFromUserId() {
         return fromUserId;

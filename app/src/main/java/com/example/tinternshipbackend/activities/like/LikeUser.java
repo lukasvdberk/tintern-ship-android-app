@@ -1,6 +1,7 @@
 package com.example.tinternshipbackend.activities.like;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -8,17 +9,20 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tinternshipbackend.R;
+import com.example.tinternshipbackend.activities.account_management.company.ManageCompanyInternshipsActivity;
 import com.example.tinternshipbackend.controllers.Like.LikeController;
 import com.example.tinternshipbackend.controllers.authentication.AuthController;
 import com.example.tinternshipbackend.controllers.company.CompanyController;
 import com.example.tinternshipbackend.controllers.intern.InternController;
 import com.example.tinternshipbackend.controllers.user.UserController;
+import com.example.tinternshipbackend.models.Like;
 import com.example.tinternshipbackend.models.User;
 import com.example.tinternshipbackend.models.company.Company;
 import com.example.tinternshipbackend.models.company.CompanyProject;
 import com.example.tinternshipbackend.models.intern.Intern;
 import com.example.tinternshipbackend.responses.authentication.LoginResponse;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
+import com.example.tinternshipbackend.viewUtil.ToastUtil;
 
 import org.w3c.dom.Text;
 
@@ -55,37 +59,6 @@ public class LikeUser extends AppCompatActivity {
 
 
     }
-    private void getAllFittingInternshipProjects() {
-        internController.getAllFittingProjects(new HttpResponse<ArrayList<CompanyProject>>() {
-            @Override
-            public void onSuccess(ArrayList<CompanyProject> data) {
-                listOfProjects.addAll(data);
-                getCompanyBelongingToProject();
-            }
-
-            @Override
-            public void onError(String error) {
-
-            }
-        });
-    }
-
-    private void getIntern() {
-        System.out.println(user.getId());
-        internController.getIntern(user.getId(), new HttpResponse<Intern>() {
-            @Override
-            public void onSuccess(Intern data) {
-                intern = data;
-                getAllFittingInternshipProjects();
-            }
-
-            @Override
-            public void onError(String error) {
-                System.out.println("hallo");
-                System.out.println(error);
-            }
-        });
-    }
 
     private void getMe() {
         userController.getMe(new HttpResponse<User>() {
@@ -98,6 +71,52 @@ public class LikeUser extends AppCompatActivity {
             @Override
             public void onError(String error) {
                 System.out.println(error);
+            }
+        });
+    }
+
+    private void getIntern() {
+        internController.getIntern(user.getId(), new HttpResponse<Intern>() {
+            @Override
+            public void onSuccess(Intern data) {
+                intern = data;
+                getAllFittingInternshipProjects();
+            }
+
+            @Override
+            public void onError(String error) {
+                System.out.println(error);
+            }
+        });
+    }
+
+    private void getAllFittingInternshipProjects() {
+        internController.getAllFittingProjects(new HttpResponse<ArrayList<CompanyProject>>() {
+            @Override
+            public void onSuccess(ArrayList<CompanyProject> data) {
+                listOfProjects.addAll(data);
+                System.out.println(listOfProjects.size());
+                getCompanyBelongingToProject();
+            }
+
+            @Override
+            public void onError(String error) {
+
+            }
+        });
+    }
+
+    private void getCompanyBelongingToProject() {
+        companyController.getCompanyByCompanyId(listOfProjects.get(index).getCompanyId(), new HttpResponse<Company>() {
+            @Override
+            public void onSuccess(Company data) {
+                company = data;
+                setupListeners();
+            }
+
+            @Override
+            public void onError(String error) {
+
             }
         });
     }
@@ -121,31 +140,53 @@ public class LikeUser extends AppCompatActivity {
         dislikeButton.setOnClickListener(v -> dislike());
     }
 
-    private void getCompanyBelongingToProject() {
-        companyController.getCompanyByCompanyId(listOfProjects.get(index).getCompanyId(), new HttpResponse<Company>() {
-            @Override
-            public void onSuccess(Company data) {
-                company = data;
-                setupListeners();
-            }
-
-            @Override
-            public void onError(String error) {
-
-            }
-        });
-    }
 
     private void like() {
+        saveLike();
+
         if(index + 1 < listOfProjects.size()) {
+
             index += 1;
-            System.out.println(listOfProjects.size());
-            System.out.println(index);
+
             getCompanyBelongingToProject();
         }
     }
 
     private void dislike() {
-        System.out.println("Dislike you girl");
+        if(index + 1 < listOfProjects.size()) {
+            index += 1;
+
+            getCompanyBelongingToProject();
+        }
+    }
+
+    private void saveLike() {
+        Like like = new Like(intern.getUserId(), company.getUserId(), true);
+
+        likeController.saveLike(like, new HttpResponse<Like>() {
+            @Override
+            public void onSuccess(Like data) {
+                System.out.println("iets ging goed");
+            }
+
+            @Override
+            public void onError(String error) {
+                System.out.println("Er ging iets fout");
+            }
+        });
+
+
+        userController.getMe(new HttpResponse<User>() {
+            @Override
+            public void onSuccess(User data) {
+                user = data;
+                getIntern();
+            }
+
+            @Override
+            public void onError(String error) {
+                System.out.println(error);
+            }
+        });
     }
 }

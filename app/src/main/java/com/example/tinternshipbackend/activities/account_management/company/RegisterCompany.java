@@ -10,13 +10,17 @@ import android.widget.EditText;
 
 import com.example.tinternshipbackend.R;
 import com.example.tinternshipbackend.controllers.company.CompanyController;
+import com.example.tinternshipbackend.controllers.user.UserController;
+import com.example.tinternshipbackend.models.User;
 import com.example.tinternshipbackend.models.company.Company;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
 import com.example.tinternshipbackend.viewUtil.ToastUtil;
 
 public class RegisterCompany extends AppCompatActivity {
     CompanyController companyController;
+    UserController userController;
     Context mContext;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +28,24 @@ public class RegisterCompany extends AppCompatActivity {
         setContentView(R.layout.activity_register_company);
 
         this.companyController = new CompanyController(this);
+        this.userController = new UserController(this);
         this.mContext = this;
+        getMe();
         setupListeners();
+    }
+
+    private void getMe() {
+        userController.getMe(new HttpResponse<User>() {
+            @Override
+            public void onSuccess(User data) {
+                user = data;
+            }
+
+            @Override
+            public void onError(String error) {
+                System.out.println(error);
+            }
+        });
     }
 
     private void setupListeners() {
@@ -41,7 +61,7 @@ public class RegisterCompany extends AppCompatActivity {
         String aboutTheCompany = ((EditText) findViewById(R.id.aboutTheCompany)).getText().toString();
         String phoneNumber = ((EditText) findViewById(R.id.companyPhoneNumber)).getText().toString();
 
-        Company company = new Company(companyName, aboutTheCompany, phoneNumber);
+        Company company = new Company(user.getId(), companyName, aboutTheCompany, phoneNumber);
 
         this.companyController.saveCompany(company, new HttpResponse<Company>() {
             @Override

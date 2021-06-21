@@ -17,7 +17,7 @@ public class InternHttp{
         this.age = intern.getAge();
         this.description = intern.getDescription();
         this.phoneNumber = intern.getPhoneNumber();
-        this.educationId = intern.getEducation().getId();
+        this.educationId = intern.getEducationId();
     }
 
     public String getId() {
