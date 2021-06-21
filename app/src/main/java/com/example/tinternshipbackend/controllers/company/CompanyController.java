@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.tinternshipbackend.models.Education;
 import com.example.tinternshipbackend.models.company.Company;
 import com.example.tinternshipbackend.models.company.CompanyProject;
+import com.example.tinternshipbackend.models.intern.Intern;
 import com.example.tinternshipbackend.responses.company.SaveCompanyProject;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpClient;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
@@ -35,8 +36,8 @@ public class CompanyController {
 
     public void addCompanyProject(CompanyProject companyProject, HttpResponse<SaveCompanyProject> onResponse) {
         SaveCompanyProject saveCompanyProject = new SaveCompanyProject();
-        saveCompanyProject.setEducationId(companyProject.getEducation().getId());
-        saveCompanyProject.setCompanyId(companyProject.getCompany().getId());
+        saveCompanyProject.setEducationId(companyProject.getEducationId());
+        saveCompanyProject.setCompanyId(companyProject.getCompanyId());
         saveCompanyProject.setDescription(companyProject.getDescription());
 
         new HttpClient<SaveCompanyProject>(context)
@@ -53,5 +54,13 @@ public class CompanyController {
         Type type = new TypeToken<ArrayList<Company>>() {}.getType();
         new HttpClient<ArrayList<Company>>(context)
                 .getList("companies", onResponse, type);
+    }
+
+    public void getCompanyByCompanyId(String companyId, HttpResponse<Company> onResponse) {
+        new HttpClient<Company>(context).get("/companies/user/" + companyId, onResponse, Company.class);
+    }
+
+    public void getIntern(String userId, HttpResponse<Intern> onResponse) {
+        new HttpClient<Intern>(context).get("interns/user/" + userId, onResponse, Intern.class);
     }
 }

@@ -47,7 +47,7 @@ public class ProjectCompanyAdapter extends ArrayAdapter<CompanyProject> {
         CompanyProject project = getItem(position);
 
         vh.description.setText(project.getDescription());
-        vh.educationText.setText(project.getEducation().getName());
+        vh.educationText.setText(project.getEducationId());
         vh.close.setOnClickListener(v -> onClose.onClose(project));
 
         return convertView;

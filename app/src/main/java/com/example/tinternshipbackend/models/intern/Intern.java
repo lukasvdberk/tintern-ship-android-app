@@ -46,6 +46,10 @@ public class Intern {
         return age;
     }
 
+    public String getAgeAsAString() {
+        return Integer.toString(age);
+    }
+
     public void setAge(int age) {
         this.age = age;
     }
