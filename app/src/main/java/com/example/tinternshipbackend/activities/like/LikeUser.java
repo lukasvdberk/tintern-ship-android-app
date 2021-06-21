@@ -10,7 +10,10 @@ import com.example.tinternshipbackend.R;
 import com.example.tinternshipbackend.controllers.Like.LikeController;
 import com.example.tinternshipbackend.controllers.authentication.AuthController;
 import com.example.tinternshipbackend.controllers.company.CompanyController;
+import com.example.tinternshipbackend.controllers.user.UserController;
+import com.example.tinternshipbackend.models.User;
 import com.example.tinternshipbackend.models.company.Company;
+import com.example.tinternshipbackend.responses.authentication.LoginResponse;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
 
 import java.util.ArrayList;
@@ -19,6 +22,7 @@ import java.util.List;
 public class LikeUser extends AppCompatActivity {
     private LikeController likeController;
     private CompanyController companyController;
+    private UserController userController;
     private AuthController authController;
     private int index = 0;
     private Context mContext;
@@ -32,6 +36,19 @@ public class LikeUser extends AppCompatActivity {
         this.likeController = new LikeController(this);
         this.companyController = new CompanyController(this);
         this.authController = new AuthController(this);
+        this.userController = new UserController(this);
+
+        userController.getMe(new HttpResponse<User>() {
+            @Override
+            public void onSuccess(User data) {
+                System.out.println(data.getId());
+            }
+
+            @Override
+            public void onError(String error) {
+                System.out.println(error);
+            }
+        });
         this.mContext = this;
         getListOfAllCompanies();
         setupListeners();

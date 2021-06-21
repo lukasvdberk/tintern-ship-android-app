@@ -1,12 +1,22 @@
 package com.example.tinternshipbackend.models;
 
 public class User {
+    String id;
     String email;
     String password;
 
-    public User(String email, String password) {
+    public User(String id, String email, String password) {
+        this.id = id;
         this.email = email;
         this.password = password;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getEmail() {
