@@ -103,7 +103,6 @@ public class LikeUser extends AppCompatActivity {
             @Override
             public void onSuccess(ArrayList<CompanyProject> data) {
                 listOfProjects.addAll(data);
-                System.out.println(listOfProjects.size());
                 getCompanyBelongingToProject();
                 ToastUtil.showLongToast(mContext, "Success, fetched all fitting internship projects");
             }
@@ -133,7 +132,6 @@ public class LikeUser extends AppCompatActivity {
         }
     }
 
-
     private void setupListeners() {
 
         TextView name = (TextView) findViewById(R.id.name);
@@ -158,6 +156,10 @@ public class LikeUser extends AppCompatActivity {
             public void onSuccess(Boolean data) {
                 matchAvailable = data;
                 ToastUtil.showLongToast(mContext, "Success, checked if match is available");
+
+                if(matchAvailable == true) {
+                    saveMatch();
+                }
             }
 
             @Override
@@ -184,7 +186,6 @@ public class LikeUser extends AppCompatActivity {
 
     }
 
-
     private void like() {
         if(index < listOfProjects.size()) {
             index += 1;
@@ -192,10 +193,6 @@ public class LikeUser extends AppCompatActivity {
             saveLike();
 
             checkIfMatchAvailable();
-
-            if(matchAvailable == true) {
-                saveMatch();
-            }
 
             getCompanyBelongingToProject();
 
