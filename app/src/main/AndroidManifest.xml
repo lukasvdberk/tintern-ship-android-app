@@ -40,7 +40,7 @@
             android:label="@string/looking_for"
             android:theme="@style/Theme.TinternShipBackend.NoActionBar" />
         <activity
-            android:name=".activities.like.LikeUser"
+            android:name=".activities.like.LikeCompanyActivity"
             android:label="LikeUser"
             android:theme="@style/Theme.TinternShipBackend.NoActionBar">
             <intent-filter>

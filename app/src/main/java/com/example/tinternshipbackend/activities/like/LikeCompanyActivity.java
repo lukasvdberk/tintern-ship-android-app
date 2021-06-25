@@ -31,7 +31,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LikeUser extends AppCompatActivity {
+public class LikeCompanyActivity extends AppCompatActivity {
     private LikeController likeController;
     private CompanyController companyController;
     private UserController userController;
