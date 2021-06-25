@@ -192,8 +192,6 @@ public class LikeUser extends AppCompatActivity {
 
             saveLike();
 
-            checkIfMatchAvailable();
-
             getCompanyBelongingToProject();
 
         }
@@ -214,6 +212,7 @@ public class LikeUser extends AppCompatActivity {
             @Override
             public void onSuccess(Like data) {
                 ToastUtil.showLongToast(mContext, "Success, saved like");
+                checkIfMatchAvailable();
             }
 
             @Override
