@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class HttpClient<T> {
     // TODO set dynamicly from env or something
-    public static String BASE_URL = "https://c1d57212c2da.ngrok.io/";
+    public static String BASE_URL = "https://62bc2a4b5513.ngrok.io/";
     Context context;
 
     public HttpClient(Context context) {

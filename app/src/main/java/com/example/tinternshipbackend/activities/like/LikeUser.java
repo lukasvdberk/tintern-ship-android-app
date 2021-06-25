@@ -14,8 +14,10 @@ import com.example.tinternshipbackend.controllers.Like.LikeController;
 import com.example.tinternshipbackend.controllers.authentication.AuthController;
 import com.example.tinternshipbackend.controllers.company.CompanyController;
 import com.example.tinternshipbackend.controllers.intern.InternController;
+import com.example.tinternshipbackend.controllers.matchController.MatchController;
 import com.example.tinternshipbackend.controllers.user.UserController;
 import com.example.tinternshipbackend.models.Like;
+import com.example.tinternshipbackend.models.Match;
 import com.example.tinternshipbackend.models.User;
 import com.example.tinternshipbackend.models.company.Company;
 import com.example.tinternshipbackend.models.company.CompanyProject;
@@ -35,9 +37,11 @@ public class LikeUser extends AppCompatActivity {
     private UserController userController;
     private AuthController authController;
     private InternController internController;
+    private MatchController matchController;
     private User user;
     private Intern intern;
     private Company company;
+    private Boolean matchAvailable;
 
     private int index = 0;
     private Context mContext;
@@ -53,6 +57,7 @@ public class LikeUser extends AppCompatActivity {
         this.authController = new AuthController(this);
         this.userController = new UserController(this);
         this.internController = new InternController(this);
+        this.matchController = new MatchController(this);
         this.mContext = this;
 
         getMe();
@@ -68,11 +73,12 @@ public class LikeUser extends AppCompatActivity {
             public void onSuccess(User data) {
                 user = data;
                 getIntern();
+                ToastUtil.showLongToast(mContext, "Success, fetched me");
             }
 
             @Override
             public void onError(String error) {
-                System.out.println(error);
+                ToastUtil.showLongToast(mContext, "Failed to get me");
             }
         });
     }
@@ -82,11 +88,12 @@ public class LikeUser extends AppCompatActivity {
             @Override
             public void onSuccess(Intern data) {
                 intern = data;
+                ToastUtil.showLongToast(mContext, "Success, fetched intern");
             }
 
             @Override
             public void onError(String error) {
-                System.out.println(error);
+                ToastUtil.showLongToast(mContext, "Failed to get intern");
             }
         });
     }
@@ -98,11 +105,12 @@ public class LikeUser extends AppCompatActivity {
                 listOfProjects.addAll(data);
                 System.out.println(listOfProjects.size());
                 getCompanyBelongingToProject();
+                ToastUtil.showLongToast(mContext, "Success, fetched all fitting internship projects");
             }
 
             @Override
             public void onError(String error) {
-
+                ToastUtil.showLongToast(mContext, "Failed to get company from project");
             }
         });
     }
@@ -114,11 +122,12 @@ public class LikeUser extends AppCompatActivity {
                 public void onSuccess(Company data) {
                     company = data;
                     setupListeners();
+                    ToastUtil.showLongToast(mContext, "Success, fetched company belonging to given project");
                 }
 
                 @Override
                 public void onError(String error) {
-
+                    ToastUtil.showLongToast(mContext, "Failed to get company from project");
                 }
             });
         }
@@ -143,6 +152,38 @@ public class LikeUser extends AppCompatActivity {
         dislikeButton.setOnClickListener(v -> dislike());
     }
 
+    private void checkIfMatchAvailable() {
+        this.matchController.checkIfMatchIsAvailable(new HttpResponse<Boolean>() {
+            @Override
+            public void onSuccess(Boolean data) {
+                matchAvailable = data;
+                ToastUtil.showLongToast(mContext, "Success, checked if match is available");
+            }
+
+            @Override
+            public void onError(String error) {
+                ToastUtil.showLongToast(mContext, "Failed to check if match is available");
+            }
+        });
+    }
+
+    private void saveMatch() {
+        Match match = new Match(intern.getUserId(), company.getUserId());
+        this.matchController.saveMatch(match, new HttpResponse<Match>() {
+            @Override
+            public void onSuccess(Match data) {
+                ToastUtil.showLongToast(mContext, "Success, saved match");
+
+            }
+
+            @Override
+            public void onError(String error) {
+                ToastUtil.showLongToast(mContext, "Failed to save match");
+            }
+        });
+
+    }
+
 
     private void like() {
         if(index < listOfProjects.size()) {
@@ -150,7 +191,14 @@ public class LikeUser extends AppCompatActivity {
 
             saveLike();
 
+            checkIfMatchAvailable();
+
+            if(matchAvailable == true) {
+                saveMatch();
+            }
+
             getCompanyBelongingToProject();
+
         }
     }
 
@@ -168,26 +216,12 @@ public class LikeUser extends AppCompatActivity {
         likeController.saveLike(like, new HttpResponse<Like>() {
             @Override
             public void onSuccess(Like data) {
-                System.out.println("iets ging goed");
+                ToastUtil.showLongToast(mContext, "Success, saved like");
             }
 
             @Override
             public void onError(String error) {
-                System.out.println("Er ging iets fout");
-            }
-        });
-
-
-        userController.getMe(new HttpResponse<User>() {
-            @Override
-            public void onSuccess(User data) {
-                user = data;
-                getIntern();
-            }
-
-            @Override
-            public void onError(String error) {
-                System.out.println(error);
+                ToastUtil.showLongToast(mContext, "Failed to save like");
             }
         });
     }
