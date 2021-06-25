@@ -36,7 +36,6 @@ public class LikeInternActivity extends AppCompatActivity {
     private InternController internController;
     private MatchController matchController;
     private User user;
-    private Intern intern;
     private Company company;
     private Boolean matchAvailable;
 
@@ -167,6 +166,8 @@ public class LikeInternActivity extends AppCompatActivity {
 
                 if(matchAvailable == true) {
                     saveMatch();
+                } else {
+                    setupListeners();
                 }
             }
 
@@ -178,11 +179,12 @@ public class LikeInternActivity extends AppCompatActivity {
     }
 
     private void saveMatch() {
-        Match match = new Match(intern.getUserId(), company.getUserId());
+        Match match = new Match(listOfAvailableInterns.get(index).getUserId(), company.getUserId());
         this.matchController.saveMatch(match, new HttpResponse<Match>() {
             @Override
             public void onSuccess(Match data) {
                 ToastUtil.showLongToast(mContext, "Success, saved match");
+                setupListeners();
 
             }
 
@@ -207,11 +209,13 @@ public class LikeInternActivity extends AppCompatActivity {
         if(index + 1 < listOfAvailableInterns.size()) {
             index += 1;
 
+            setupListeners();
+
         }
     }
 
     private void saveLike() {
-        Like like = new Like(intern.getUserId(), company.getUserId(), true);
+        Like like = new Like(listOfAvailableInterns.get(index).getUserId(), company.getUserId(), true);
 
         likeController.saveLike(like, new HttpResponse<Like>() {
             @Override
