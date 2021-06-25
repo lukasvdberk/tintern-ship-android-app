@@ -43,6 +43,16 @@
             android:name=".activities.like.LikeCompanyActivity"
             android:label="LikeUser"
             android:theme="@style/Theme.TinternShipBackend.NoActionBar">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".activities.like.LikeInternActivity"
+            android:label="LikeUser"
+            android:theme="@style/Theme.TinternShipBackend.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

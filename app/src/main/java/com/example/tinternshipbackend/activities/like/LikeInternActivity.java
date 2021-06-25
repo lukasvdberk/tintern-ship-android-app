@@ -84,6 +84,7 @@ public class LikeInternActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Company data) {
                 company = data;
+                System.out.println(company);
                 ToastUtil.showLongToast(mContext, "Success, fetched company");
                 getProjectsBelongingToCompany();
             }
@@ -141,14 +142,29 @@ public class LikeInternActivity extends AppCompatActivity {
 
     private void setupListeners() {
 
+//        TextView name = (TextView) findViewById(R.id.name);
+//        name.setText(listOfAvailableInterns.get(index).getName());
+//
+//        TextView age = (TextView) findViewById(R.id.age);
+//        age.setText(listOfAvailableInterns.get(index).getAge());
+//
+//        TextView description = (TextView) findViewById(R.id.description);
+//        description.setText(listOfAvailableInterns.get(index).getDescription());
+//
+//        Button likeButton = (Button) findViewById(R.id.likeBtn);
+//        Button dislikeButton = (Button) findViewById(R.id.dislikeBtn);
+//
+//        likeButton.setOnClickListener(v -> like());
+//        dislikeButton.setOnClickListener(v -> dislike());
+
         TextView name = (TextView) findViewById(R.id.name);
-        name.setText(listOfAvailableInterns.get(index).getName());
+        name.setText("hallo");
 
         TextView age = (TextView) findViewById(R.id.age);
-        age.setText(listOfAvailableInterns.get(index).getAge());
+        age.setText("hallo");
 
         TextView description = (TextView) findViewById(R.id.description);
-        description.setText(listOfAvailableInterns.get(index).getDescription());
+        description.setText("hallo");
 
         Button likeButton = (Button) findViewById(R.id.likeBtn);
         Button dislikeButton = (Button) findViewById(R.id.dislikeBtn);

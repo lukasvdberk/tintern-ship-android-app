@@ -13,6 +13,7 @@ import android.widget.Spinner;
 
 import com.example.tinternshipbackend.R;
 import com.example.tinternshipbackend.activities.MainActivity;
+import com.example.tinternshipbackend.activities.like.LikeInternActivity;
 import com.example.tinternshipbackend.adapters.EducationArrayAdapter;
 import com.example.tinternshipbackend.adapters.ProjectCompanyAdapter;
 import com.example.tinternshipbackend.controllers.company.CompanyController;
@@ -131,8 +132,8 @@ public class ManageCompanyInternshipsActivity extends AppCompatActivity {
                 requestsMade++;
 
                 if(requestsMade == companyProjects.size()) {
-                    Intent mainActivity = new Intent(mContext, MainActivity.class);
-                    startActivity(mainActivity);
+                    Intent likeInternActivity = new Intent(mContext, LikeInternActivity.class);
+                    startActivity(likeInternActivity);
                 }
             }
 
