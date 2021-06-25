@@ -24,6 +24,8 @@ import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpRespo
 import com.example.tinternshipbackend.viewUtil.ToastUtil;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class LikeInternActivity extends AppCompatActivity {
@@ -99,10 +101,12 @@ public class LikeInternActivity extends AppCompatActivity {
             @Override
             public void onSuccess(ArrayList<CompanyProject> data) {
                 for(int i = 0; i < data.size(); i++) {
-                    listOfAvailableEducationIds.add(data.get(i).getEducationId());
-                    ToastUtil.showLongToast(mContext, "Success, fetched projects belonging to this company");
-                    getAllFittingInterns();
+                    boolean educationAlreadyInListOfOfEducations = listOfAvailableEducationIds.contains(data.get(i).getEducationId());
+                    if (!educationAlreadyInListOfOfEducations) {
+                        listOfAvailableEducationIds.add(data.get(i).getEducationId());
+                    }
                 }
+                ToastUtil.showLongToast(mContext, "Success, fetched projects belonging to this company");
             }
 
             @Override
@@ -114,32 +118,38 @@ public class LikeInternActivity extends AppCompatActivity {
     }
 
     private void getAllFittingInterns() {
-        this.internController.getAllFittingInterns(new HttpResponse<ArrayList<Intern>>() {
-            @Override
-            public void onSuccess(ArrayList<Intern> data) {
-                listOfAvailableInterns.addAll(data);
-                ToastUtil.showLongToast(mContext, "Success, fetched list of available interns");
+        for(int i = 0; i < listOfAvailableEducationIds.size(); i++) {
+            this.internController.getAllFittingInterns(listOfAvailableEducationIds.get(i) ,new HttpResponse<ArrayList<Intern>>() {
+                @Override
+                public void onSuccess(ArrayList<Intern> data) {
+                    listOfAvailableInterns.addAll(data);
+                    ToastUtil.showLongToast(mContext, "Success, fetched list of available interns");
+                }
 
-            }
-
-            @Override
-            public void onError(String error) {
-                ToastUtil.showLongToast(mContext, "Failed to fetch list of available interns");
-            }
-        });
+                @Override
+                public void onError(String error) {
+                    ToastUtil.showLongToast(mContext, "Failed to fetch list of available interns");
+                }
+            });
+        }
+        shuffleListOfInters();
+        setupListeners();
     }
 
+    private void shuffleListOfInters() {
+        Collections.shuffle(listOfAvailableInterns);
+    }
 
     private void setupListeners() {
 
         TextView name = (TextView) findViewById(R.id.name);
-        name.setText(company.getName());
+        name.setText(listOfAvailableInterns.get(index).getName());
 
         TextView age = (TextView) findViewById(R.id.age);
-        age.setText(listOfProjects.get(index).getEducationId());
+        age.setText(listOfAvailableInterns.get(index).getAge());
 
         TextView description = (TextView) findViewById(R.id.description);
-        description.setText(listOfProjects.get(index).getDescription());
+        description.setText(listOfAvailableInterns.get(index).getDescription());
 
         Button likeButton = (Button) findViewById(R.id.likeBtn);
         Button dislikeButton = (Button) findViewById(R.id.dislikeBtn);
@@ -185,21 +195,18 @@ public class LikeInternActivity extends AppCompatActivity {
     }
 
     private void like() {
-        if(index < listOfProjects.size()) {
+        if(index < listOfAvailableInterns.size()) {
             index += 1;
 
             saveLike();
-
-            getCompanyBelongingToProject();
 
         }
     }
 
     private void dislike() {
-        if(index + 1 < listOfProjects.size()) {
+        if(index + 1 < listOfAvailableInterns.size()) {
             index += 1;
 
-            getCompanyBelongingToProject();
         }
     }
 
