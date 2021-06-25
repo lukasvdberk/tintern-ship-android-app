@@ -59,8 +59,6 @@ public class LikeInternActivity extends AppCompatActivity {
 
         getMe();
 
-        getAllFittingInterns();
-
     }
 
     private void getMe() {
@@ -84,7 +82,6 @@ public class LikeInternActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Company data) {
                 company = data;
-                System.out.println(company);
                 ToastUtil.showLongToast(mContext, "Success, fetched company");
                 getProjectsBelongingToCompany();
             }
@@ -107,6 +104,7 @@ public class LikeInternActivity extends AppCompatActivity {
                     }
                 }
                 ToastUtil.showLongToast(mContext, "Success, fetched projects belonging to this company");
+                getAllFittingInterns();
             }
 
             @Override
@@ -132,39 +130,28 @@ public class LikeInternActivity extends AppCompatActivity {
                 }
             });
         }
-        shuffleListOfInters();
-        setupListeners();
+//        shuffleListOfInters();
     }
 
     private void shuffleListOfInters() {
         Collections.shuffle(listOfAvailableInterns);
+
+        System.out.println(listOfAvailableInterns.get(index).getName());
+
+//        setupListeners();
     }
 
     private void setupListeners() {
-
-//        TextView name = (TextView) findViewById(R.id.name);
-//        name.setText(listOfAvailableInterns.get(index).getName());
-//
-//        TextView age = (TextView) findViewById(R.id.age);
-//        age.setText(listOfAvailableInterns.get(index).getAge());
-//
-//        TextView description = (TextView) findViewById(R.id.description);
-//        description.setText(listOfAvailableInterns.get(index).getDescription());
-//
-//        Button likeButton = (Button) findViewById(R.id.likeBtn);
-//        Button dislikeButton = (Button) findViewById(R.id.dislikeBtn);
-//
-//        likeButton.setOnClickListener(v -> like());
-//        dislikeButton.setOnClickListener(v -> dislike());
+        System.out.println(listOfAvailableInterns.get(index).getName());
 
         TextView name = (TextView) findViewById(R.id.name);
-        name.setText("hallo");
+        name.setText(listOfAvailableInterns.get(index).getName());
 
         TextView age = (TextView) findViewById(R.id.age);
-        age.setText("hallo");
+        age.setText(listOfAvailableInterns.get(index).getAge());
 
         TextView description = (TextView) findViewById(R.id.description);
-        description.setText("hallo");
+        description.setText(listOfAvailableInterns.get(index).getDescription());
 
         Button likeButton = (Button) findViewById(R.id.likeBtn);
         Button dislikeButton = (Button) findViewById(R.id.dislikeBtn);
@@ -183,7 +170,7 @@ public class LikeInternActivity extends AppCompatActivity {
                 if(matchAvailable == true) {
                     saveMatch();
                 } else {
-                    setupListeners();
+//                    setupListeners();
                 }
             }
 
@@ -200,7 +187,7 @@ public class LikeInternActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Match data) {
                 ToastUtil.showLongToast(mContext, "Success, saved match");
-                setupListeners();
+//                setupListeners();
 
             }
 
@@ -225,7 +212,7 @@ public class LikeInternActivity extends AppCompatActivity {
         if(index + 1 < listOfAvailableInterns.size()) {
             index += 1;
 
-            setupListeners();
+//            setupListeners();
 
         }
     }
