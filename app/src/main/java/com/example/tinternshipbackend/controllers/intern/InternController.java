@@ -37,5 +37,11 @@ public class InternController {
         new HttpClient<ArrayList<CompanyProject>>(context)
                 .getList("/companies/fitting-internship-projects", onResponse, type);
     }
+
+    public void getAllFittingInterns(String educationId, HttpResponse<ArrayList<Intern>> onResponse) {
+        Type type = new TypeToken<ArrayList<Intern>>() {}.getType();
+        new HttpClient<ArrayList<Intern>>(context)
+                .getList("/interns/fitting-interns/" + educationId, onResponse, type);
+    }
 }
 

@@ -54,7 +54,12 @@ public class CompanyController {
         new HttpClient<Company>(context).get("companies/company/" + companyId, onResponse, Company.class);
     }
 
-    public void getIntern(String userId, HttpResponse<Intern> onResponse) {
-        new HttpClient<Intern>(context).get("interns/user/" + userId, onResponse, Intern.class);
+    public void getCompany(String userId, HttpResponse<Company> onResponse) {
+        new HttpClient<Company>(context).get("companies/user/" + userId, onResponse, Company.class);
+    }
+
+    public void getMyCompanyProjects(HttpResponse<ArrayList<CompanyProject>> onResponse) {
+        Type type = new TypeToken<ArrayList<CompanyProject>>() {}.getType();
+        new HttpClient<ArrayList<CompanyProject>>(context).getList("companies/projects", onResponse, type);
     }
 }
