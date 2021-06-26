@@ -122,6 +122,7 @@ public class LikeInternActivity extends AppCompatActivity {
                 public void onSuccess(ArrayList<Intern> data) {
                     listOfAvailableInterns.addAll(data);
                     ToastUtil.showLongToast(mContext, "Success, fetched list of available interns");
+                    setupListeners();
                 }
 
                 @Override
@@ -130,7 +131,6 @@ public class LikeInternActivity extends AppCompatActivity {
                 }
             });
         }
-//        shuffleListOfInters();
     }
 
     private void shuffleListOfInters() {
@@ -138,17 +138,15 @@ public class LikeInternActivity extends AppCompatActivity {
 
         System.out.println(listOfAvailableInterns.get(index).getName());
 
-//        setupListeners();
+        setupListeners();
     }
 
     private void setupListeners() {
-        System.out.println(listOfAvailableInterns.get(index).getName());
-
         TextView name = (TextView) findViewById(R.id.name);
         name.setText(listOfAvailableInterns.get(index).getName());
 
         TextView age = (TextView) findViewById(R.id.age);
-        age.setText(listOfAvailableInterns.get(index).getAge());
+        age.setText(Integer.toString(listOfAvailableInterns.get(index).getAge()));
 
         TextView description = (TextView) findViewById(R.id.description);
         description.setText(listOfAvailableInterns.get(index).getDescription());
@@ -170,7 +168,7 @@ public class LikeInternActivity extends AppCompatActivity {
                 if(matchAvailable == true) {
                     saveMatch();
                 } else {
-//                    setupListeners();
+                    setupListeners();
                 }
             }
 
@@ -187,7 +185,7 @@ public class LikeInternActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Match data) {
                 ToastUtil.showLongToast(mContext, "Success, saved match");
-//                setupListeners();
+                setupListeners();
 
             }
 
@@ -200,11 +198,10 @@ public class LikeInternActivity extends AppCompatActivity {
     }
 
     private void like() {
-        if(index < listOfAvailableInterns.size()) {
+        if(index < listOfAvailableInterns.size() - 1) {
             index += 1;
 
             saveLike();
-
         }
     }
 
@@ -212,7 +209,7 @@ public class LikeInternActivity extends AppCompatActivity {
         if(index + 1 < listOfAvailableInterns.size()) {
             index += 1;
 
-//            setupListeners();
+            setupListeners();
 
         }
     }
