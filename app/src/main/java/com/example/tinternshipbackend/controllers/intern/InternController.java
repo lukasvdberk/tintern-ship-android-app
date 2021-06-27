@@ -12,6 +12,7 @@ import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpClien
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
 import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
@@ -43,5 +44,7 @@ public class InternController {
         new HttpClient<ArrayList<Intern>>(context)
                 .getList("/interns/fitting-interns/" + educationId, onResponse, type);
     }
+
+//    public void getInternsWhoLikedMe(ArrayList<I> )
 }
 
