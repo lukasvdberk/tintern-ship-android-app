@@ -3,6 +3,7 @@ package com.example.tinternshipbackend.activities.like;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -34,7 +35,7 @@ public class LikedByCompanyActivity extends AppCompatActivity {
     private Context mContext;
     private User user;
     private List<Like> listOfLikes = new ArrayList<>();
-    private ArrayList<Company> companiesWhoLikedMe = new ArrayList<>();
+    private ArrayList<Company> companiesWhoLikedMe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +68,7 @@ public class LikedByCompanyActivity extends AppCompatActivity {
 //        companiesWhoLikedMe.add(company7);
 //        companiesWhoLikedMe.add(company8);
 
-        getMe();
-
+        companiesWhoLikedMe = new ArrayList<>();
         CompanyLikesAdapter companyLikesAdapter = new CompanyLikesAdapter(LikedByCompanyActivity.this, companiesWhoLikedMe);
 
         binding.likesView.setAdapter(companyLikesAdapter);
@@ -84,6 +84,8 @@ public class LikedByCompanyActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        getMe();
     }
 
     private void getCompaniesBelongingToLikes() {
@@ -92,6 +94,10 @@ public class LikedByCompanyActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(Company data) {
                     companiesWhoLikedMe.add(data);
+
+                    CompanyLikesAdapter companyLikesAdapter = new CompanyLikesAdapter(LikedByCompanyActivity.this, companiesWhoLikedMe);
+
+                    binding.likesView.setAdapter(companyLikesAdapter);
                 }
 
                 @Override
