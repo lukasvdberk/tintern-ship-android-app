@@ -6,9 +6,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tinternshipbackend.databinding.ActivityCompanyBinding;
-import com.example.tinternshipbackend.databinding.ActivityLikesBinding;
 
-public class CompanyActivity extends AppCompatActivity {
+public class InternActivity extends  AppCompatActivity{
 
     ActivityCompanyBinding binding;
 
