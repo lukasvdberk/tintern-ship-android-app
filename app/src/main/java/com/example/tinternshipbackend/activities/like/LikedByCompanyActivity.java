@@ -52,10 +52,20 @@ public class LikedByCompanyActivity extends AppCompatActivity {
         Company company = new Company("60d0ecc5277c8d40106887f0", "Bedrijf 1", "Dit is bedrijf 1", "0638576839");
         Company company2 = new Company("60d0ecc5277c8d40106887f0", "Bedrijf 2", "Dit is bedrijf 2", "0612345678");
         Company company3 = new Company("60d0ecc5277c8d40106887f0", "Bedrijf 3", "Dit is bedrijf 3", "0687654321");
+        Company company4 = new Company("60d0ecc5277c8d40106887f0", "Bedrijf 4", "Dit is bedrijf 4", "0638576839");
+        Company company5 = new Company("60d0ecc5277c8d40106887f0", "Bedrijf 5", "Dit is bedrijf 5", "0612345678");
+        Company company6 = new Company("60d0ecc5277c8d40106887f0", "Bedrijf 6", "Dit is bedrijf 6", "0687654321");
+        Company company7 = new Company("60d0ecc5277c8d40106887f0", "Bedrijf 7", "Dit is bedrijf 7", "0687654321");
+        Company company8 = new Company("60d0ecc5277c8d40106887f0", "Bedrijf 8", "Dit is bedrijf 8", "0687654321");
 
         companiesWhoLikedMe.add(company);
         companiesWhoLikedMe.add(company2);
         companiesWhoLikedMe.add(company3);
+        companiesWhoLikedMe.add(company4);
+        companiesWhoLikedMe.add(company5);
+        companiesWhoLikedMe.add(company6);
+        companiesWhoLikedMe.add(company7);
+        companiesWhoLikedMe.add(company8);
 
         getMe();
 
