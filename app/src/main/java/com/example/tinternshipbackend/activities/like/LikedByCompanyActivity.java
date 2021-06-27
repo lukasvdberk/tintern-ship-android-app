@@ -3,11 +3,13 @@ package com.example.tinternshipbackend.activities.like;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.tinternshipbackend.adapters.LikesAdapter;
 import com.example.tinternshipbackend.controllers.Like.LikeController;
 import com.example.tinternshipbackend.controllers.user.UserController;
 import com.example.tinternshipbackend.databinding.ActivityLikesBinding;
@@ -30,7 +32,7 @@ public class LikedByCompanyActivity extends AppCompatActivity {
     private Context mContext;
     private User user;
     private List<Like> listOfLikes = new ArrayList<>();
-    private List<Company> companiesWhoLikedMe = new ArrayList<>();
+    private ArrayList<Company> companiesWhoLikedMe = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,19 +49,19 @@ public class LikedByCompanyActivity extends AppCompatActivity {
         binding = ActivityLikesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        ListAdapter listAdapter = new ListAdapter(LikedByCompanyActivity.this, companiesWhoLikedMe);
+        LikesAdapter likesAdapter = new LikesAdapter(LikedByCompanyActivity.this, companiesWhoLikedMe);
 
-        binding.listview.setAdapter(listAdapter);
-        binding.listview.setClickable(true);
-        binding.listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        binding.likesView.setAdapter(likesAdapter);
+        binding.likesView.setClickable(true);
+        binding.likesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent i = new Intent(LikedByCompanyActivity.this,LikeCompanyActivity.class);
-                i.putExtra("name",companiesWhoLikedMe.get(position).getName();
-                i.putExtra("phoneNumber",companiesWhoLikedMe.get(position).getPhoneNumber();
-                i.putExtra("description",companiesWhoLikedMe.get(position).getDescription();
+                Intent i = new Intent(LikedByCompanyActivity.this,CompanyActivity.class);
+                i.putExtra("name",companiesWhoLikedMe.get(position).getName());
+                i.putExtra("phoneNumber",companiesWhoLikedMe.get(position).getPhoneNumber());
+                i.putExtra("description",companiesWhoLikedMe.get(position).getDescription());
                 startActivity(i);
 
             }
