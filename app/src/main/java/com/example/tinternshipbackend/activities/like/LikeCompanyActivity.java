@@ -145,9 +145,13 @@ public class LikeCompanyActivity extends AppCompatActivity {
 
         Button likeButton = (Button) findViewById(R.id.likeBtn);
         Button dislikeButton = (Button) findViewById(R.id.dislikeBtn);
+        Button likesButton = (Button) findViewById(R.id.likesBtn);
+        Button matchesButton = (Button) findViewById(R.id.matchesBtn);
 
         likeButton.setOnClickListener(v -> like());
         dislikeButton.setOnClickListener(v -> dislike());
+        likesButton.setOnClickListener(v -> likes());
+        matchesButton.setOnClickListener(v -> matches());
     }
 
     private void checkIfMatchAvailable() {
@@ -203,6 +207,15 @@ public class LikeCompanyActivity extends AppCompatActivity {
 
             getCompanyBelongingToProject();
         }
+    }
+
+    private void matches() {
+
+    }
+
+    private void likes() {
+        Intent intent = new Intent(mContext, LikedByCompanyActivity.class);
+        startActivity(intent);
     }
 
     private void saveLike() {
