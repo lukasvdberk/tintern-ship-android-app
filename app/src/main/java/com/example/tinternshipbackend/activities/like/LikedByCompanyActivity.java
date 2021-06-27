@@ -46,27 +46,23 @@ public class LikedByCompanyActivity extends AppCompatActivity {
         this.userController = new UserController( this);
         this.companyController = new CompanyController(this);
 
-        getMe();
-
         binding = ActivityLikesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        getMe();
 
         LikesAdapter likesAdapter = new LikesAdapter(LikedByCompanyActivity.this, companiesWhoLikedMe);
 
         binding.likesView.setAdapter(likesAdapter);
         binding.likesView.setClickable(true);
-        binding.likesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        binding.likesView.setOnItemClickListener((parent, view, position, id) -> {
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Intent i = new Intent(LikedByCompanyActivity.this,CompanyActivity.class);
+            i.putExtra("name",companiesWhoLikedMe.get(position).getName());
+            i.putExtra("phoneNumber",companiesWhoLikedMe.get(position).getPhoneNumber());
+            i.putExtra("description",companiesWhoLikedMe.get(position).getDescription());
+            startActivity(i);
 
-                Intent i = new Intent(LikedByCompanyActivity.this,CompanyActivity.class);
-                i.putExtra("name",companiesWhoLikedMe.get(position).getName());
-                i.putExtra("phoneNumber",companiesWhoLikedMe.get(position).getPhoneNumber());
-                i.putExtra("description",companiesWhoLikedMe.get(position).getDescription());
-                startActivity(i);
-
-            }
         });
     }
 
@@ -76,7 +72,6 @@ public class LikedByCompanyActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(Company data) {
                     companiesWhoLikedMe.add(data);
-//                    System.out.println(data.getName());
                 }
 
                 @Override
