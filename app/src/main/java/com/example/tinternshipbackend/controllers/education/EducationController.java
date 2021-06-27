@@ -3,6 +3,7 @@ package com.example.tinternshipbackend.controllers.education;
 import android.content.Context;
 
 import com.example.tinternshipbackend.models.Education;
+import com.example.tinternshipbackend.models.company.Company;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpClient;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
 import com.google.gson.internal.LinkedTreeMap;
@@ -40,5 +41,9 @@ public class EducationController {
             }
         };
         new HttpClient<ArrayList<Object>>(context).getList("educations/", parseResponse);
+    }
+
+    public void getEducationById(String educationId, HttpResponse<Education> onResponse) {
+        new HttpClient<Education>(context).get("educations/" + educationId, onResponse, Education.class);
     }
 }
