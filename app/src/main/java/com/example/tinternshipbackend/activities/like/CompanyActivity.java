@@ -14,10 +14,6 @@ public class CompanyActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("Hallo?");
-        System.out.println("Hallo?");
-        System.out.println("Hallo?");
-        System.out.println("Hallo?");
         super.onCreate(savedInstanceState);
         binding = AcitvityCompanyBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
