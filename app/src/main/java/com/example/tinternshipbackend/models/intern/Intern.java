@@ -20,16 +20,6 @@ public class Intern {
         this.educationId = educationId;
     }
 
-    public Intern(String id, String userId, String educationId, String name, int age, String description, String phoneNumber, Education education) {
-        this.id = id;
-        this.userId = userId;
-        this.educationId = educationId;
-        this.name = name;
-        this.age = age;
-        this.description = description;
-        this.phoneNumber = phoneNumber;
-    }
-
     public String getId() {
         return id;
     }

@@ -44,6 +44,17 @@
             android:name=".activities.like.LikeCompanyActivity"
             android:label="LikeUser"
             android:theme="@style/Theme.TinternShipBackend.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activities.like.LikeInternActivity"
+            android:label="LikeUser"
+            android:theme="@style/Theme.TinternShipBackend.NoActionBar">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 
@@ -52,14 +63,14 @@
         </activity>
 
         <activity
-            android:name=".activities.like.LikeInternActivity"
-            android:label="LikeUser"
+            android:name=".activities.like.LikedByCompanyActivity"
+            android:label="CompaniesWhoLikedMe"
             android:theme="@style/Theme.TinternShipBackend.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--                        <intent-filter>-->
+<!--                            <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                            <category android:name="android.intent.category.LAUNCHER" />-->
+<!--                        </intent-filter>-->
         </activity>
 
         <activity
@@ -72,9 +83,14 @@
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>         <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
-<!--    -->
+
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
+        </activity>
+        <activity
+            android:name=".activities.like.CompanyActivity"
+            android:label="likedCompanyDetail"
+            android:theme="@style/Theme.TinternShipBackend.NoActionBar">
         </activity>
         <activity
             android:name=".activities.MainActivity"

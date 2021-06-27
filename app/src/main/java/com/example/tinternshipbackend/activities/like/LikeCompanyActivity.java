@@ -13,9 +13,11 @@ import com.example.tinternshipbackend.activities.account_management.company.Mana
 import com.example.tinternshipbackend.controllers.Like.LikeController;
 import com.example.tinternshipbackend.controllers.authentication.AuthController;
 import com.example.tinternshipbackend.controllers.company.CompanyController;
+import com.example.tinternshipbackend.controllers.education.EducationController;
 import com.example.tinternshipbackend.controllers.intern.InternController;
 import com.example.tinternshipbackend.controllers.matchController.MatchController;
 import com.example.tinternshipbackend.controllers.user.UserController;
+import com.example.tinternshipbackend.models.Education;
 import com.example.tinternshipbackend.models.Like;
 import com.example.tinternshipbackend.models.Match;
 import com.example.tinternshipbackend.models.User;
@@ -38,6 +40,8 @@ public class LikeCompanyActivity extends AppCompatActivity {
     private AuthController authController;
     private InternController internController;
     private MatchController matchController;
+    private EducationController educationController;
+    private Education education;
     private User user;
     private Intern intern;
     private Company company;
@@ -58,11 +62,10 @@ public class LikeCompanyActivity extends AppCompatActivity {
         this.userController = new UserController(this);
         this.internController = new InternController(this);
         this.matchController = new MatchController(this);
+        this.educationController = new EducationController(this);
         this.mContext = this;
 
         getMe();
-
-        getAllFittingInternshipProjects();
 
 
     }
@@ -89,11 +92,28 @@ public class LikeCompanyActivity extends AppCompatActivity {
             public void onSuccess(Intern data) {
                 intern = data;
                 ToastUtil.showLongToast(mContext, "Success, fetched intern");
+                getEducation();
             }
 
             @Override
             public void onError(String error) {
                 ToastUtil.showLongToast(mContext, "Failed to get intern");
+            }
+        });
+    }
+
+    private void getEducation() {
+        educationController.getEducationById(intern.getEducationId(), new HttpResponse<Education>() {
+            @Override
+            public void onSuccess(Education data) {
+                education = data;
+                ToastUtil.showLongToast(mContext, "Success, fetched education");
+                getAllFittingInternshipProjects();
+            }
+
+            @Override
+            public void onError(String error) {
+                ToastUtil.showLongToast(mContext, "Failed to get Education");
             }
         });
     }
@@ -138,16 +158,20 @@ public class LikeCompanyActivity extends AppCompatActivity {
         name.setText(company.getName());
 
         TextView age = (TextView) findViewById(R.id.age);
-        age.setText(listOfProjects.get(index).getEducationId());
+        age.setText(education.getName());
 
         TextView description = (TextView) findViewById(R.id.description);
         description.setText(listOfProjects.get(index).getDescription());
 
         Button likeButton = (Button) findViewById(R.id.likeBtn);
         Button dislikeButton = (Button) findViewById(R.id.dislikeBtn);
+        Button likesButton = (Button) findViewById(R.id.likesBtn);
+        Button matchesButton = (Button) findViewById(R.id.matchesBtn);
 
         likeButton.setOnClickListener(v -> like());
         dislikeButton.setOnClickListener(v -> dislike());
+        likesButton.setOnClickListener(v -> likes());
+        matchesButton.setOnClickListener(v -> matches());
     }
 
     private void checkIfMatchAvailable() {
@@ -203,6 +227,15 @@ public class LikeCompanyActivity extends AppCompatActivity {
 
             getCompanyBelongingToProject();
         }
+    }
+
+    private void matches() {
+
+    }
+
+    private void likes() {
+        Intent intent = new Intent(mContext, LikedByCompanyActivity.class);
+        startActivity(intent);
     }
 
     private void saveLike() {
