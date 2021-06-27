@@ -39,12 +39,10 @@ public class LikesAdapter extends ArrayAdapter<Company> {
 //        ImageView imageView = convertView.findViewById(R.id.profile_pic);
         TextView name = convertView.findViewById(R.id.personName);
         TextView phoneNumber = convertView.findViewById(R.id.phoneNumber);
-        TextView description = convertView.findViewById(R.id.relative_description);
 
 //        imageView.setImageResource();
         name.setText(company.getName());
         phoneNumber.setText(company.getPhoneNumber());
-//        description.setText(company.getDescription());
 
 
         return convertView;

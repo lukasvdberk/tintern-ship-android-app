@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.like.CompanyActivity">
+    tools:context=".activities.like.CompanyActivity"
+    android:background="@color/secondary_color">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
@@ -21,7 +22,7 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/profile_image"
         android:layout_marginTop="10dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:text="" />
 
     <RelativeLayout
@@ -45,7 +46,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Name"
-                android:textSize="12sp"/>
+                android:textSize="16sp"
+                android:textColor="@color/white"/>
 
             <TextView
                 android:id="@+id/name_profile"
@@ -53,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:text="Nils van der Velden"
                 android:textSize="26sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/white"/>
 
         </LinearLayout>
 
@@ -78,8 +80,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="Phone"
-                android:textSize="12sp"/>
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/phone_profile"
@@ -87,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:text="+31-999999999"
                 android:textSize="26sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/white"/>
 
         </LinearLayout>
 
@@ -126,15 +129,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Description"
-                android:textSize="12sp"/>
+                android:textColor="@color/white"
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/relative_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Korte beschrijving"
-                android:textSize="12sp"
-                android:textColor="@color/black"/>
+                android:textSize="16sp"
+                android:textColor="@color/white"/>
 
         </LinearLayout>
 

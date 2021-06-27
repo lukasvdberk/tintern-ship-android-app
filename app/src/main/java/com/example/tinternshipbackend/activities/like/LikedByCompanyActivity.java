@@ -49,9 +49,9 @@ public class LikedByCompanyActivity extends AppCompatActivity {
         binding = ActivityLikesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Company company = new Company("60d0ecc5277c8d40106887f0", "Bedrijf 1", "Dit is bedrijf 1", "1234567890");
-        Company company2 = new Company("60d0ecc5277c8d40106887f0", "Bedrijf 2", "Dit is bedrijf 1", "1234567890");
-        Company company3 = new Company("60d0ecc5277c8d40106887f0", "Bedrijf 3", "Dit is bedrijf 1", "1234567890");
+        Company company = new Company("60d0ecc5277c8d40106887f0", "Bedrijf 1", "Dit is bedrijf 1", "0638576839");
+        Company company2 = new Company("60d0ecc5277c8d40106887f0", "Bedrijf 2", "Dit is bedrijf 2", "0612345678");
+        Company company3 = new Company("60d0ecc5277c8d40106887f0", "Bedrijf 3", "Dit is bedrijf 3", "0687654321");
 
         companiesWhoLikedMe.add(company);
         companiesWhoLikedMe.add(company2);
@@ -98,7 +98,7 @@ public class LikedByCompanyActivity extends AppCompatActivity {
             public void onSuccess(ArrayList<Like> data) {
                 listOfLikes.addAll(data);
                 ToastUtil.showLongToast(mContext, "Success, fetched all likes from this user");
-                getCompaniesBelongingToLikes();
+//                getCompaniesBelongingToLikes();
             }
 
             @Override

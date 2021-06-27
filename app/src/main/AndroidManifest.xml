@@ -88,6 +88,11 @@
 <!--            </intent-filter>-->
         </activity>
         <activity
+            android:name=".activities.like.CompanyActivity"
+            android:label="likedCompanyDetail"
+            android:theme="@style/Theme.TinternShipBackend.NoActionBar">
+        </activity>
+        <activity
             android:name=".activities.MainActivity"
             android:theme="@style/Theme.TinternShipBackend.NoActionBar">\
         </activity>
