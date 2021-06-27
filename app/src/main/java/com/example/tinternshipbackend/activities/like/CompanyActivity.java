@@ -33,7 +33,7 @@ public class CompanyActivity extends AppCompatActivity {
 
             binding.nameProfile.setText(name);
             binding.phoneProfile.setText(phone);
-            binding.description.setText(description);
+            binding.relativeDescription.setText(description);
 //            binding.profileImage.setImageResource(imageid);
 
 

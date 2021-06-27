@@ -129,7 +129,7 @@
                 android:textSize="12sp"/>
 
             <TextView
-                android:id="@+id/description"
+                android:id="@+id/relative_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Korte beschrijving"

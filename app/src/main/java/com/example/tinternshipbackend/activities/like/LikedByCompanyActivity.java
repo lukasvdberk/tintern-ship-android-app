@@ -49,20 +49,30 @@ public class LikedByCompanyActivity extends AppCompatActivity {
         binding = ActivityLikesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        Company company = new Company("60d0ecc5277c8d40106887f0", "Bedrijf 1", "Dit is bedrijf 1", "1234567890");
+        Company company2 = new Company("60d0ecc5277c8d40106887f0", "Bedrijf 2", "Dit is bedrijf 1", "1234567890");
+        Company company3 = new Company("60d0ecc5277c8d40106887f0", "Bedrijf 3", "Dit is bedrijf 1", "1234567890");
+
+        companiesWhoLikedMe.add(company);
+        companiesWhoLikedMe.add(company2);
+        companiesWhoLikedMe.add(company3);
+
         getMe();
 
         LikesAdapter likesAdapter = new LikesAdapter(LikedByCompanyActivity.this, companiesWhoLikedMe);
 
         binding.likesView.setAdapter(likesAdapter);
         binding.likesView.setClickable(true);
-        binding.likesView.setOnItemClickListener((parent, view, position, id) -> {
+        binding.likesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            Intent i = new Intent(LikedByCompanyActivity.this,CompanyActivity.class);
-            i.putExtra("name",companiesWhoLikedMe.get(position).getName());
-            i.putExtra("phoneNumber",companiesWhoLikedMe.get(position).getPhoneNumber());
-            i.putExtra("description",companiesWhoLikedMe.get(position).getDescription());
-            startActivity(i);
-
+                Intent i = new Intent(LikedByCompanyActivity.this, CompanyActivity.class);
+                i.putExtra("name", companiesWhoLikedMe.get(position).getName());
+                i.putExtra("phoneNumber", companiesWhoLikedMe.get(position).getPhoneNumber());
+                i.putExtra("description", companiesWhoLikedMe.get(position).getDescription());
+                startActivity(i);
+            }
         });
     }
 
