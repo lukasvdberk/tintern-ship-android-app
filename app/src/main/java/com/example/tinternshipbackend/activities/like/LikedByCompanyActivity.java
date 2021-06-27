@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tinternshipbackend.adapters.LikesAdapter;
 import com.example.tinternshipbackend.controllers.Like.LikeController;
+import com.example.tinternshipbackend.controllers.company.CompanyController;
 import com.example.tinternshipbackend.controllers.user.UserController;
 import com.example.tinternshipbackend.databinding.ActivityLikesBinding;
 import com.example.tinternshipbackend.models.Like;
@@ -29,6 +30,7 @@ public class LikedByCompanyActivity extends AppCompatActivity {
 
     private LikeController likeController;
     private UserController userController;
+    private CompanyController companyController;
     private Context mContext;
     private User user;
     private List<Like> listOfLikes = new ArrayList<>();
@@ -42,9 +44,9 @@ public class LikedByCompanyActivity extends AppCompatActivity {
 
         this.likeController = new LikeController(this);
         this.userController = new UserController( this);
+        this.companyController = new CompanyController(this);
 
         getMe();
-
 
         binding = ActivityLikesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -68,17 +70,35 @@ public class LikedByCompanyActivity extends AppCompatActivity {
         });
     }
 
+    private void getCompaniesBelongingToLikes() {
+        for (int i = 0; i < listOfLikes.size(); i++) {
+            companyController.getCompanyByUserId(listOfLikes.get(i).getFromUserId(), new HttpResponse<Company>() {
+                @Override
+                public void onSuccess(Company data) {
+                    companiesWhoLikedMe.add(data);
+//                    System.out.println(data.getName());
+                }
+
+                @Override
+                public void onError(String error) {
+
+                }
+            });
+        }
+    }
+
     private void getLikesFromUser() {
         likeController.getLikes(user.getId(), new HttpResponse<ArrayList<Like>>() {
             @Override
             public void onSuccess(ArrayList<Like> data) {
                 listOfLikes.addAll(data);
-                ToastUtil.showLongToast(mContext, "Success, fetched all fitting internship projects");
+                ToastUtil.showLongToast(mContext, "Success, fetched all likes from this user");
+                getCompaniesBelongingToLikes();
             }
 
             @Override
             public void onError(String error) {
-                ToastUtil.showLongToast(mContext, "Failed to get company from project");
+                ToastUtil.showLongToast(mContext, "Failed to fetch likes for this user");
             }
         });
     }
