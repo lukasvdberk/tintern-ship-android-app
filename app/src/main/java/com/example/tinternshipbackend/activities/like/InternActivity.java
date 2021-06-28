@@ -23,13 +23,13 @@ public class InternActivity extends  AppCompatActivity{
 
             String name = intent.getStringExtra("name");
             String phone = intent.getStringExtra("phoneNumber");
-            String education = intent.getStringExtra("education");
+            String educationName = intent.getStringExtra("educationName");
             String description = intent.getStringExtra("description");
 //            int imageid = intent.getIntExtra("imageid",R.drawable.a);
 
             binding.nameProfile.setText(name);
             binding.phoneProfile.setText(phone);
-            binding.educationProfile.setText(education);
+            binding.educationProfile.setText(educationName);
             binding.relativeDescription.setText(description);
 //            binding.profileImage.setImageResource(imageid);
 

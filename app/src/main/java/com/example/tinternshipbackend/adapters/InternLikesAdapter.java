@@ -34,14 +34,16 @@ public class InternLikesAdapter extends ArrayAdapter<Intern> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.likes_item,parent,false);
 
         }
+        System.out.println("____________________________________________");
+        System.out.println(intern.getName());
 
 //        ImageView imageView = convertView.findViewById(R.id.profile_pic);
         TextView name = convertView.findViewById(R.id.personName);
-        TextView phoneNumber = convertView.findViewById(R.id.phoneNumber);
+        TextView age = convertView.findViewById(R.id.phoneNumber);
 
 //        imageView.setImageResource();
         name.setText(intern.getName());
-        phoneNumber.setText(Integer.toString(intern.getAge()));
+        age.setText(intern.getAgeAsAString());
 
 
         return convertView;

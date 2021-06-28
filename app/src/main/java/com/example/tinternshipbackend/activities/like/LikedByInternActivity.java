@@ -12,9 +12,11 @@ import com.example.tinternshipbackend.adapters.CompanyLikesAdapter;
 import com.example.tinternshipbackend.adapters.InternLikesAdapter;
 import com.example.tinternshipbackend.controllers.Like.LikeController;
 import com.example.tinternshipbackend.controllers.company.CompanyController;
+import com.example.tinternshipbackend.controllers.education.EducationController;
 import com.example.tinternshipbackend.controllers.intern.InternController;
 import com.example.tinternshipbackend.controllers.user.UserController;
 import com.example.tinternshipbackend.databinding.ActivityLikesBinding;
+import com.example.tinternshipbackend.models.Education;
 import com.example.tinternshipbackend.models.Like;
 import com.example.tinternshipbackend.models.User;
 import com.example.tinternshipbackend.models.company.Company;
@@ -32,11 +34,14 @@ public class LikedByInternActivity extends AppCompatActivity {
     private LikeController likeController;
     private UserController userController;
     private InternController internController;
+    private EducationController educationController;
 
     private Context mContext;
     private User user;
+    private Education education;
 
     private List<Like> listOfLikes = new ArrayList<>();
+    private List<Education> listOfEducations = new ArrayList<>();
     private ArrayList<Intern> internsWhoLikedMe = new ArrayList<>();
 
     @Override
@@ -48,6 +53,7 @@ public class LikedByInternActivity extends AppCompatActivity {
         this.likeController = new LikeController(this);
         this.userController = new UserController( this);
         this.internController = new InternController(this);
+        this.educationController = new EducationController(this);
 
         binding = ActivityLikesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -62,10 +68,12 @@ public class LikedByInternActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                System.out.println(internsWhoLikedMe.get(position).getEducationId());
+
                 Intent i = new Intent(LikedByInternActivity.this, InternActivity.class);
                 i.putExtra("name", internsWhoLikedMe.get(position).getName());
                 i.putExtra("age", internsWhoLikedMe.get(position).getAge());
-                i.putExtra("educationId", internsWhoLikedMe.get(position).getEducationId());
+                i.putExtra("educationName", listOfEducations.get(position).getName());
                 i.putExtra("phoneNumber", internsWhoLikedMe.get(position).getPhoneNumber());
                 i.putExtra("description", internsWhoLikedMe.get(position).getDescription());
 
@@ -74,16 +82,38 @@ public class LikedByInternActivity extends AppCompatActivity {
         });
     }
 
+    private void getEducation(String educationId) {
+        educationController.getEducationById(educationId, new HttpResponse<Education>() {
+            @Override
+            public void onSuccess(Education data) {
+                education = data;
+                listOfEducations.add(education);
+                ToastUtil.showLongToast(mContext, "Success, fetched education");
+
+                InternLikesAdapter internLikesAdapter = new InternLikesAdapter(LikedByInternActivity.this, internsWhoLikedMe);
+
+                binding.likesView.setAdapter(internLikesAdapter);
+            }
+
+            @Override
+            public void onError(String error) {
+                ToastUtil.showLongToast(mContext, "Failed to get Education");
+            }
+        });
+    }
+
+
     private void getInternsBelongingToLikes() {
         for (int i = 0; i < listOfLikes.size(); i++) {
             internController.getInternByUserId(listOfLikes.get(i).getFromUserId(), new HttpResponse<Intern>() {
                 @Override
                 public void onSuccess(Intern data) {
                     internsWhoLikedMe.add(data);
+                    getEducation(data.getEducationId());
 
-                    InternLikesAdapter internLikesAdapter = new InternLikesAdapter(LikedByInternActivity.this, internsWhoLikedMe);
-
-                    binding.likesView.setAdapter(internLikesAdapter);
+//                    InternLikesAdapter internLikesAdapter = new InternLikesAdapter(LikedByInternActivity.this, internsWhoLikedMe);
+//
+//                    binding.likesView.setAdapter(internLikesAdapter);
                 }
 
                 @Override
