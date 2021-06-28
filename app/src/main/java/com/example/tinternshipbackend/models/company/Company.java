@@ -60,6 +60,10 @@ public class Company implements Serializable {
     }
 
     public String getAvatarUrl() {
+        if(avatarUrl == null) {
+            return "https://file.coffee/u/1woImEMROR3EAC.png";
+        }
+
         if (!avatarUrl.startsWith("http")) {
             return HttpClient.BASE_URL + avatarUrl;
         }

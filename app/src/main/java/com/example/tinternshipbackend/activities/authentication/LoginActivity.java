@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.tinternshipbackend.R;
+import com.example.tinternshipbackend.activities.MainActivity;
 import com.example.tinternshipbackend.activities.account_management.DecideUserTypeActivity;
 import com.example.tinternshipbackend.controllers.authentication.LoginController;
 import com.example.tinternshipbackend.models.User;
@@ -50,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         loginController.login(user, new HttpResponse<LoginResponse>() {
             @Override
             public void onSuccess(LoginResponse data) {
-                Intent decideUserTypeActivity = new Intent(mContext, DecideUserTypeActivity.class);
+                Intent decideUserTypeActivity = new Intent(mContext, MainActivity.class);
                 startActivity(decideUserTypeActivity);
                 showToast("You are logged in!");
             }

@@ -20,7 +20,7 @@
 
     <string name="manage_jobs">Add jobs</string>
     <string name="internship">Internship</string>
-    <string name="company">Company</string>
+    <string name="company">Intern</string>
     <string name="go_to_login_page">Already have an account?</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
