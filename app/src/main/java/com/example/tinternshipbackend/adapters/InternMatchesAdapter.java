@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import androidx.annotation.Nullable;
 import com.example.tinternshipbackend.R;
 import com.example.tinternshipbackend.models.company.Company;
 import com.example.tinternshipbackend.models.intern.Intern;
+import com.example.tinternshipbackend.viewUtil.DownloadImageAndSet;
 
 import java.util.ArrayList;
 
@@ -35,13 +37,14 @@ public class InternMatchesAdapter extends ArrayAdapter<Company> {
 
         }
 
-//        ImageView imageView = convertView.findViewById(R.id.profile_pic);
         TextView name = convertView.findViewById(R.id.personName);
         TextView phoneNumber = convertView.findViewById(R.id.phoneNumber);
 
-//        imageView.setImageResource();
         name.setText(company.getName());
         phoneNumber.setText(company.getPhoneNumber());
+
+        ImageView profilePicture = convertView.findViewById(R.id.profile_pic);
+        new DownloadImageAndSet(profilePicture, getContext()).execute(company.getAvatarUrl());
 
 
         return convertView;
