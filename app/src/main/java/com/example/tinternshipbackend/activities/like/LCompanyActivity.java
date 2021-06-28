@@ -1,24 +1,12 @@
 package com.example.tinternshipbackend.activities.like;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.tinternshipbackend.R;
 import com.example.tinternshipbackend.databinding.ActivityLikeCompanyBinding;
 import com.example.tinternshipbackend.viewUtil.DownloadImageAndSet;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class LCompanyActivity extends AppCompatActivity {
 
@@ -36,11 +24,11 @@ public class LCompanyActivity extends AppCompatActivity {
 
             String name = intent.getStringExtra("name");
             String description = intent.getStringExtra("description");
-            String avatarUrl = intent.getStringExtra("avatarUrl");
 
             binding.nameProfile.setText(name);
             binding.relativeDescription.setText(description);
 
+            String avatarUrl = intent.getStringExtra("avatarUrl");
             new DownloadImageAndSet(binding.profileImage, this).execute(avatarUrl);
         }
     }
