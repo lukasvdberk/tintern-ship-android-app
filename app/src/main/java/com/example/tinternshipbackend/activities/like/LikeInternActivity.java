@@ -209,19 +209,16 @@ public class LikeInternActivity extends AppCompatActivity {
     }
 
     private void like() {
-        if(index < listOfAvailableInterns.size() - 1) {
-            index += 1;
-
+        if(index + 1 <= listOfAvailableInterns.size()) {
             saveLike();
+            index += 1;
         }
     }
 
     private void dislike() {
         if(index + 1 < listOfAvailableInterns.size()) {
             index += 1;
-
             setupListeners();
-
         }
     }
 
@@ -236,7 +233,7 @@ public class LikeInternActivity extends AppCompatActivity {
     }
 
     private void saveLike() {
-        Like like = new Like(listOfAvailableInterns.get(index).getUserId(), company.getUserId(), true);
+        Like like = new Like(company.getUserId(), listOfAvailableInterns.get(index).getUserId(), true);
 
         likeController.saveLike(like, new HttpResponse<Like>() {
             @Override

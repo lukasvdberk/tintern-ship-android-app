@@ -217,18 +217,16 @@ public class LikeCompanyActivity extends AppCompatActivity {
     }
 
     private void like() {
-        if(index + 1 < listOfProjects.size()) {
-            index += 1;
-
+        if(index + 1 <= listOfProjects.size()) {
             saveLike();
 
+            index += 1;
             getCompanyBelongingToProject();
-
         }
     }
 
     private void dislike() {
-        if(index + 1 < listOfProjects.size()) {
+        if(index + 1 <= listOfProjects.size()) {
             index += 1;
 
             getCompanyBelongingToProject();
