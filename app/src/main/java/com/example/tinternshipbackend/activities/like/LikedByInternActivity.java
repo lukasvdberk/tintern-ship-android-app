@@ -52,14 +52,6 @@ public class LikedByInternActivity extends AppCompatActivity {
         binding = ActivityLikesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Intern intern = new Intern("60d0ecc5277c8d40106887f0", "60b1fec430adfe2426a4b277", "Stagair 1", 22, "Dit is Stagaire 1", "0638576839");
-        Intern intern1 = new Intern("60d0ecc5277c8d40106887f0", "60b1fec430adfe2426a4b277", "Stagair 2", 22, "Dit is Stagaire 2", "0638576839");
-        Intern intern2 = new Intern("60d0ecc5277c8d40106887f0", "60b1fec430adfe2426a4b277", "Stagair 3", 22, "Dit is Stagaire 3", "0638576839");
-
-        internsWhoLikedMe.add(intern);
-        internsWhoLikedMe.add(intern1);
-        internsWhoLikedMe.add(intern2);
-
         getMe();
 
         InternLikesAdapter internLikesAdapter = new InternLikesAdapter(LikedByInternActivity.this, internsWhoLikedMe);
@@ -82,19 +74,25 @@ public class LikedByInternActivity extends AppCompatActivity {
         });
     }
 
-//    private void getInternsBelongingToLikes() {
-//        internController.getInternsWhoLikeMe(listOfLikes, new HttpResponse<Intern>() {
-//            @Override
-//            public void onSuccess(Intern data) {
-//                internsWhoLikedMe.add(data);
-//            }
-//
-//            @Override
-//            public void onError(String error) {
-//
-//            }
-//        });
-//    }
+    private void getInternsBelongingToLikes() {
+        for (int i = 0; i < listOfLikes.size(); i++) {
+            internController.getInternByUserId(listOfLikes.get(i).getFromUserId(), new HttpResponse<Intern>() {
+                @Override
+                public void onSuccess(Intern data) {
+                    internsWhoLikedMe.add(data);
+
+                    InternLikesAdapter internLikesAdapter = new InternLikesAdapter(LikedByInternActivity.this, internsWhoLikedMe);
+
+                    binding.likesView.setAdapter(internLikesAdapter);
+                }
+
+                @Override
+                public void onError(String error) {
+                    System.out.println("HEROOOOO");
+                }
+            });
+        }
+    }
 
     private void getLikesFromUser() {
         likeController.getLikes(user.getId(), new HttpResponse<ArrayList<Like>>() {
@@ -102,7 +100,7 @@ public class LikedByInternActivity extends AppCompatActivity {
             public void onSuccess(ArrayList<Like> data) {
                 listOfLikes.addAll(data);
                 ToastUtil.showLongToast(mContext, "Success, fetched all likes from this user");
-//                getCompaniesBelongingToLikes();
+                getInternsBelongingToLikes();
             }
 
             @Override

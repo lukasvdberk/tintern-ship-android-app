@@ -45,6 +45,8 @@ public class InternController {
                 .getList("/interns/fitting-interns/" + educationId, onResponse, type);
     }
 
-//    public void getInternsWhoLikedMe(ArrayList<I> )
+    public void getInternByUserId(String userId, HttpResponse< Intern > onResponse) {
+        new HttpClient<Intern>(context).get("/interns/likedUser/" + userId, onResponse, Intern.class);
+    }
 }
 
