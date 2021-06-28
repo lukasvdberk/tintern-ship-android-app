@@ -1,10 +1,13 @@
 package com.example.tinternshipbackend.models.company;
 
+import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpClient;
+
 import java.io.Serializable;
 
 public class Company implements Serializable {
     String id;
     String userId;
+    String avatarUrl;
     String name;
     String description;
     String phoneNumber;
@@ -54,5 +57,16 @@ public class Company implements Serializable {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getAvatarUrl() {
+        if (!avatarUrl.startsWith("http")) {
+            return HttpClient.BASE_URL + avatarUrl;
+        }
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

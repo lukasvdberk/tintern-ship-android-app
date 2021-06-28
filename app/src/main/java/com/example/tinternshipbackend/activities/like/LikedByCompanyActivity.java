@@ -60,8 +60,8 @@ public class LikedByCompanyActivity extends AppCompatActivity {
 
                 Intent i = new Intent(LikedByCompanyActivity.this, LCompanyActivity.class);
                 i.putExtra("name", companiesWhoLikedMe.get(position).getName());
-//                i.putExtra("phoneNumber", companiesWhoLikedMe.get(position).getPhoneNumber());
                 i.putExtra("description", companiesWhoLikedMe.get(position).getDescription());
+                i.putExtra("avatarUrl", companiesWhoLikedMe.get(position).getAvatarUrl());
                 startActivity(i);
             }
         });
