@@ -22,7 +22,6 @@ public class MCompanyActivity extends AppCompatActivity {
         Intent intent = this.getIntent();
 
         if (intent != null){
-
             String name = intent.getStringExtra("name");
             String description = intent.getStringExtra("description");
             String phoneNumber = intent.getStringExtra("phoneNumber");

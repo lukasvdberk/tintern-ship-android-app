@@ -62,10 +62,12 @@ public class InternMatchesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent i = new Intent(InternMatchesActivity.this, MInternActivity.class);
+                Intent i = new Intent(InternMatchesActivity.this, MCompanyActivity.class);
                 i.putExtra("name", companiesWhoMatchedMe.get(position).getName());
                 i.putExtra("phoneNumber", companiesWhoMatchedMe.get(position).getPhoneNumber());
                 i.putExtra("description", companiesWhoMatchedMe.get(position).getDescription());
+                i.putExtra("avatarUrl", companiesWhoMatchedMe.get(position).getAvatarUrl());
+
                 startActivity(i);
             }
         });
@@ -75,7 +77,7 @@ public class InternMatchesActivity extends AppCompatActivity {
 
     private void getCompaniesBelongingToMatches() {
         for (int i = 0; i < listOfMatches.size(); i++) {
-            if(listOfMatches.get(i).getFirstUserId() != user.getId()) {
+            if(!listOfMatches.get(i).getFirstUserId().equals(user.getId())) {
                 companyController.getCompanyByUserId(listOfMatches.get(i).getFirstUserId(), new HttpResponse<Company>() {
                     @Override
                     public void onSuccess(Company data) {
@@ -92,7 +94,7 @@ public class InternMatchesActivity extends AppCompatActivity {
                     }
                 });
             } else {
-                companyController.getCompanyByUserId(listOfMatches.get(i).getFirstUserId(), new HttpResponse<Company>() {
+                companyController.getCompanyByUserId(listOfMatches.get(i).getSecondUserId(), new HttpResponse<Company>() {
                     @Override
                     public void onSuccess(Company data) {
                         companiesWhoMatchedMe.add(data);
