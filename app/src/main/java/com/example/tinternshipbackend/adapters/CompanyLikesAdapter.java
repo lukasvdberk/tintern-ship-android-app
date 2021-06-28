@@ -17,9 +17,9 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class LikesAdapter extends ArrayAdapter<Company> {
+public class CompanyLikesAdapter extends ArrayAdapter<Company> {
 
-    public LikesAdapter(Context context, ArrayList<Company> companyArrayList){
+    public CompanyLikesAdapter(Context context, ArrayList<Company> companyArrayList){
         super(context, R.layout.likes_item, companyArrayList);
 
     }

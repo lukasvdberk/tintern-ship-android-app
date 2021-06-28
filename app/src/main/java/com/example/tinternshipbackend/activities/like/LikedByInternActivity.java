@@ -3,39 +3,41 @@ package com.example.tinternshipbackend.activities.like;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tinternshipbackend.adapters.CompanyLikesAdapter;
+import com.example.tinternshipbackend.adapters.InternLikesAdapter;
 import com.example.tinternshipbackend.controllers.Like.LikeController;
 import com.example.tinternshipbackend.controllers.company.CompanyController;
+import com.example.tinternshipbackend.controllers.intern.InternController;
 import com.example.tinternshipbackend.controllers.user.UserController;
 import com.example.tinternshipbackend.databinding.ActivityLikesBinding;
 import com.example.tinternshipbackend.models.Like;
 import com.example.tinternshipbackend.models.User;
-
 import com.example.tinternshipbackend.models.company.Company;
+import com.example.tinternshipbackend.models.intern.Intern;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
 import com.example.tinternshipbackend.viewUtil.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class LikedByCompanyActivity extends AppCompatActivity {
+public class LikedByInternActivity extends AppCompatActivity {
 
     ActivityLikesBinding binding;
 
     private LikeController likeController;
     private UserController userController;
-    private CompanyController companyController;
+    private InternController internController;
+
     private Context mContext;
     private User user;
+
     private List<Like> listOfLikes = new ArrayList<>();
-    private ArrayList<Company> companiesWhoLikedMe;
+    private ArrayList<Intern> internsWhoLikedMe = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,41 +47,43 @@ public class LikedByCompanyActivity extends AppCompatActivity {
 
         this.likeController = new LikeController(this);
         this.userController = new UserController( this);
-        this.companyController = new CompanyController(this);
+        this.internController = new InternController(this);
 
         binding = ActivityLikesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        companiesWhoLikedMe = new ArrayList<>();
-        CompanyLikesAdapter companyLikesAdapter = new CompanyLikesAdapter(LikedByCompanyActivity.this, companiesWhoLikedMe);
+        getMe();
 
-        binding.likesView.setAdapter(companyLikesAdapter);
+        InternLikesAdapter internLikesAdapter = new InternLikesAdapter(LikedByInternActivity.this, internsWhoLikedMe);
+
+        binding.likesView.setAdapter(internLikesAdapter);
         binding.likesView.setClickable(true);
         binding.likesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent i = new Intent(LikedByCompanyActivity.this, CompanyActivity.class);
-                i.putExtra("name", companiesWhoLikedMe.get(position).getName());
-                i.putExtra("phoneNumber", companiesWhoLikedMe.get(position).getPhoneNumber());
-                i.putExtra("description", companiesWhoLikedMe.get(position).getDescription());
+                Intent i = new Intent(LikedByInternActivity.this, InternActivity.class);
+                i.putExtra("name", internsWhoLikedMe.get(position).getName());
+                i.putExtra("age", internsWhoLikedMe.get(position).getAge());
+                i.putExtra("educationId", internsWhoLikedMe.get(position).getEducationId());
+                i.putExtra("phoneNumber", internsWhoLikedMe.get(position).getPhoneNumber());
+                i.putExtra("description", internsWhoLikedMe.get(position).getDescription());
+
                 startActivity(i);
             }
         });
-
-        getMe();
     }
 
-    private void getCompaniesBelongingToLikes() {
+    private void getInternsBelongingToLikes() {
         for (int i = 0; i < listOfLikes.size(); i++) {
-            companyController.getCompanyByUserId(listOfLikes.get(i).getFromUserId(), new HttpResponse<Company>() {
+            internController.getInternByUserId(listOfLikes.get(i).getFromUserId(), new HttpResponse<Intern>() {
                 @Override
-                public void onSuccess(Company data) {
-                    companiesWhoLikedMe.add(data);
+                public void onSuccess(Intern data) {
+                    internsWhoLikedMe.add(data);
 
-                    CompanyLikesAdapter companyLikesAdapter = new CompanyLikesAdapter(LikedByCompanyActivity.this, companiesWhoLikedMe);
+                    InternLikesAdapter internLikesAdapter = new InternLikesAdapter(LikedByInternActivity.this, internsWhoLikedMe);
 
-                    binding.likesView.setAdapter(companyLikesAdapter);
+                    binding.likesView.setAdapter(internLikesAdapter);
                 }
 
                 @Override
@@ -96,7 +100,7 @@ public class LikedByCompanyActivity extends AppCompatActivity {
             public void onSuccess(ArrayList<Like> data) {
                 listOfLikes.addAll(data);
                 ToastUtil.showLongToast(mContext, "Success, fetched all likes from this user");
-                getCompaniesBelongingToLikes();
+                getInternsBelongingToLikes();
             }
 
             @Override
