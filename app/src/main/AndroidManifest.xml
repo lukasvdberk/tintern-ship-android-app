@@ -94,6 +94,11 @@
             android:theme="@style/Theme.TinternShipBackend.NoActionBar">
         </activity>
         <activity
+            android:name=".activities.match.CompanyMatchesActivity"
+            android:label="likedInternDetail"
+            android:theme="@style/Theme.TinternShipBackend.NoActionBar">
+        </activity>
+        <activity
             android:name=".activities.MainActivity"
             android:theme="@style/Theme.TinternShipBackend.NoActionBar">
         </activity>
