@@ -8,10 +8,8 @@ import android.widget.AdapterView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.tinternshipbackend.adapters.CompanyLikesAdapter;
 import com.example.tinternshipbackend.adapters.InternLikesAdapter;
 import com.example.tinternshipbackend.controllers.Like.LikeController;
-import com.example.tinternshipbackend.controllers.company.CompanyController;
 import com.example.tinternshipbackend.controllers.education.EducationController;
 import com.example.tinternshipbackend.controllers.intern.InternController;
 import com.example.tinternshipbackend.controllers.user.UserController;
@@ -19,7 +17,6 @@ import com.example.tinternshipbackend.databinding.ActivityLikesBinding;
 import com.example.tinternshipbackend.models.Education;
 import com.example.tinternshipbackend.models.Like;
 import com.example.tinternshipbackend.models.User;
-import com.example.tinternshipbackend.models.company.Company;
 import com.example.tinternshipbackend.models.intern.Intern;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
 import com.example.tinternshipbackend.viewUtil.ToastUtil;
@@ -70,11 +67,11 @@ public class LikedByInternActivity extends AppCompatActivity {
 
                 System.out.println(internsWhoLikedMe.get(position).getEducationId());
 
-                Intent i = new Intent(LikedByInternActivity.this, InternActivity.class);
+                Intent i = new Intent(LikedByInternActivity.this, LInternActivity.class);
                 i.putExtra("name", internsWhoLikedMe.get(position).getName());
                 i.putExtra("age", internsWhoLikedMe.get(position).getAge());
                 i.putExtra("educationName", listOfEducations.get(position).getName());
-                i.putExtra("phoneNumber", internsWhoLikedMe.get(position).getPhoneNumber());
+//                i.putExtra("phoneNumber", internsWhoLikedMe.get(position).getPhoneNumber());
                 i.putExtra("description", internsWhoLikedMe.get(position).getDescription());
 
                 startActivity(i);

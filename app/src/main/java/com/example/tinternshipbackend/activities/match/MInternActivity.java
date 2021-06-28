@@ -1,20 +1,21 @@
-package com.example.tinternshipbackend.activities.like;
+package com.example.tinternshipbackend.activities.match;
 
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.tinternshipbackend.databinding.ActivityInternBinding;
+import com.example.tinternshipbackend.databinding.ActivityLikeInternBinding;
+import com.example.tinternshipbackend.databinding.ActivityMatchInternBinding;
 
-public class InternActivity extends  AppCompatActivity{
+public class MInternActivity extends  AppCompatActivity{
 
-    ActivityInternBinding binding;
+    ActivityMatchInternBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityInternBinding.inflate(getLayoutInflater());
+        binding = ActivityMatchInternBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         Intent intent = this.getIntent();
@@ -22,15 +23,16 @@ public class InternActivity extends  AppCompatActivity{
         if (intent != null){
 
             String name = intent.getStringExtra("name");
-            String phone = intent.getStringExtra("phoneNumber");
             String educationName = intent.getStringExtra("educationName");
-            String description = intent.getStringExtra("description");
+//            String description = intent.getStringExtra("description");
+            String phoneNumber = intent.getStringExtra("phoneNumber");
+
 //            int imageid = intent.getIntExtra("imageid",R.drawable.a);
 
             binding.nameProfile.setText(name);
-            binding.phoneProfile.setText(phone);
             binding.educationProfile.setText(educationName);
-            binding.relativeDescription.setText(description);
+//            binding.relativeDescription.setText(description);
+            binding.phoneProfile.setText(phoneNumber);
 //            binding.profileImage.setImageResource(imageid);
 
 

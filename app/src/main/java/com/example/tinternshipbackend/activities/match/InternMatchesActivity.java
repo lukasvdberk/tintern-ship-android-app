@@ -8,7 +8,7 @@ import android.widget.AdapterView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.tinternshipbackend.adapters.CompanyMatchesAdapter;
+import com.example.tinternshipbackend.adapters.InternMatchesAdapter;
 import com.example.tinternshipbackend.controllers.Like.LikeController;
 import com.example.tinternshipbackend.controllers.company.CompanyController;
 import com.example.tinternshipbackend.controllers.intern.InternController;
@@ -17,14 +17,14 @@ import com.example.tinternshipbackend.controllers.user.UserController;
 import com.example.tinternshipbackend.databinding.ActivityMatchesBinding;
 import com.example.tinternshipbackend.models.Match;
 import com.example.tinternshipbackend.models.User;
-import com.example.tinternshipbackend.models.intern.Intern;
+import com.example.tinternshipbackend.models.company.Company;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
 import com.example.tinternshipbackend.viewUtil.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CompanyMatchesActivity extends AppCompatActivity {
+public class InternMatchesActivity extends AppCompatActivity {
 
     ActivityMatchesBinding binding;
 
@@ -36,7 +36,7 @@ public class CompanyMatchesActivity extends AppCompatActivity {
     private Context mContext;
     private User user;
     private List<Match> listOfMatches = new ArrayList<>();
-    private ArrayList<Intern> internsWhoMatchedMe;
+    private ArrayList<Company> companiesWhoMatchedMe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,20 +53,19 @@ public class CompanyMatchesActivity extends AppCompatActivity {
         binding = ActivityMatchesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        internsWhoMatchedMe = new ArrayList<>();
-        CompanyMatchesAdapter companyMatchesAdapter = new CompanyMatchesAdapter(CompanyMatchesActivity.this, internsWhoMatchedMe);
+        companiesWhoMatchedMe = new ArrayList<>();
+        InternMatchesAdapter internMatchesAdapter = new InternMatchesAdapter(InternMatchesActivity.this, companiesWhoMatchedMe);
 
-        binding.matchesView.setAdapter(companyMatchesAdapter);
+        binding.matchesView.setAdapter(internMatchesAdapter);
         binding.matchesView.setClickable(true);
         binding.matchesView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent i = new Intent(CompanyMatchesActivity.this, MCompanyActivity.class);
-                i.putExtra("name", internsWhoMatchedMe.get(position).getName());
-                i.putExtra("phoneNumber", internsWhoMatchedMe.get(position).getPhoneNumber());
-                i.putExtra("description", internsWhoMatchedMe.get(position).getDescription());
-
+                Intent i = new Intent(InternMatchesActivity.this, MInternActivity.class);
+                i.putExtra("name", companiesWhoMatchedMe.get(position).getName());
+                i.putExtra("phoneNumber", companiesWhoMatchedMe.get(position).getPhoneNumber());
+                i.putExtra("description", companiesWhoMatchedMe.get(position).getDescription());
                 startActivity(i);
             }
         });
@@ -74,17 +73,17 @@ public class CompanyMatchesActivity extends AppCompatActivity {
         getMe();
     }
 
-    private void getInternsBelongingToMatches() {
+    private void getCompaniesBelongingToMatches() {
         for (int i = 0; i < listOfMatches.size(); i++) {
             if(listOfMatches.get(i).getFirstUserId() != user.getId()) {
-                internController.getInternByUserId(listOfMatches.get(i).getFirstUserId(), new HttpResponse<Intern>() {
+                companyController.getCompanyByUserId(listOfMatches.get(i).getFirstUserId(), new HttpResponse<Company>() {
                     @Override
-                    public void onSuccess(Intern data) {
-                        internsWhoMatchedMe.add(data);
+                    public void onSuccess(Company data) {
+                        companiesWhoMatchedMe.add(data);
 
-                        CompanyMatchesAdapter companyMatchesAdapter = new CompanyMatchesAdapter(CompanyMatchesActivity.this, internsWhoMatchedMe);
+                        InternMatchesAdapter internMatchesAdapter = new InternMatchesAdapter(InternMatchesActivity.this, companiesWhoMatchedMe);
 
-                        binding.matchesView.setAdapter(companyMatchesAdapter);
+                        binding.matchesView.setAdapter(internMatchesAdapter);
                     }
 
                     @Override
@@ -93,14 +92,14 @@ public class CompanyMatchesActivity extends AppCompatActivity {
                     }
                 });
             } else {
-                internController.getInternByUserId(listOfMatches.get(i).getSecondUserId(), new HttpResponse<Intern>() {
+                companyController.getCompanyByUserId(listOfMatches.get(i).getFirstUserId(), new HttpResponse<Company>() {
                     @Override
-                    public void onSuccess(Intern data) {
-                        internsWhoMatchedMe.add(data);
+                    public void onSuccess(Company data) {
+                        companiesWhoMatchedMe.add(data);
 
-                        CompanyMatchesAdapter companyMatchesAdapter = new CompanyMatchesAdapter(CompanyMatchesActivity.this, internsWhoMatchedMe);
+                        InternMatchesAdapter internMatchesAdapter = new InternMatchesAdapter(InternMatchesActivity.this, companiesWhoMatchedMe);
 
-                        binding.matchesView.setAdapter(companyMatchesAdapter);
+                        binding.matchesView.setAdapter(internMatchesAdapter);
                     }
 
                     @Override
@@ -118,7 +117,7 @@ public class CompanyMatchesActivity extends AppCompatActivity {
             public void onSuccess(ArrayList<Match> data) {
                 listOfMatches.addAll(data);
                 ToastUtil.showLongToast(mContext, "Success, fetched all likes from this user");
-                getInternsBelongingToMatches();
+                getCompaniesBelongingToMatches();
             }
 
             @Override

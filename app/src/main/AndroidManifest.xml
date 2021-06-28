@@ -84,17 +84,32 @@
 <!--            </intent-filter>-->
         </activity>
         <activity
-            android:name=".activities.like.CompanyActivity"
+            android:name=".activities.like.LCompanyActivity"
             android:label="likedCompanyDetail"
             android:theme="@style/Theme.TinternShipBackend.NoActionBar">
         </activity>
         <activity
-            android:name=".activities.like.InternActivity"
+            android:name=".activities.like.LInternActivity"
             android:label="likedInternDetail"
             android:theme="@style/Theme.TinternShipBackend.NoActionBar">
         </activity>
         <activity
             android:name=".activities.match.CompanyMatchesActivity"
+            android:label="likedInternDetail"
+            android:theme="@style/Theme.TinternShipBackend.NoActionBar">
+        </activity>
+        <activity
+            android:name=".activities.match.InternMatchesActivity"
+            android:label="likedInternDetail"
+            android:theme="@style/Theme.TinternShipBackend.NoActionBar">
+        </activity>
+        <activity
+            android:name=".activities.match.MCompanyActivity"
+            android:label="likedInternDetail"
+            android:theme="@style/Theme.TinternShipBackend.NoActionBar">
+        </activity>
+        <activity
+            android:name=".activities.match.MInternActivity"
             android:label="likedInternDetail"
             android:theme="@style/Theme.TinternShipBackend.NoActionBar">
         </activity>
