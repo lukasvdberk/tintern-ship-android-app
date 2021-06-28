@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tinternshipbackend.R;
+import com.example.tinternshipbackend.activities.match.CompanyMatchesActivity;
 import com.example.tinternshipbackend.controllers.Like.LikeController;
 import com.example.tinternshipbackend.controllers.authentication.AuthController;
 import com.example.tinternshipbackend.controllers.company.CompanyController;
@@ -220,7 +221,8 @@ public class LikeInternActivity extends AppCompatActivity {
     }
 
     private void matches() {
-
+        Intent intent = new Intent(mContext, CompanyMatchesActivity.class);
+        startActivity(intent);
     }
 
     private void likes() {

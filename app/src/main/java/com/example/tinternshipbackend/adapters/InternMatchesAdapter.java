@@ -16,10 +16,10 @@ import com.example.tinternshipbackend.models.intern.Intern;
 
 import java.util.ArrayList;
 
-public class InternLikesAdapter extends ArrayAdapter<Intern> {
+public class InternMatchesAdapter extends ArrayAdapter<Company> {
 
-    public InternLikesAdapter(Context context, ArrayList<Intern> companyArrayList){
-        super(context, R.layout.likes_item, companyArrayList);
+    public InternMatchesAdapter(Context context, ArrayList<Company> companyArrayList){
+        super(context, R.layout.matches_item, companyArrayList);
 
     }
 
@@ -27,23 +27,21 @@ public class InternLikesAdapter extends ArrayAdapter<Intern> {
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        Intern intern = getItem(position);
+        Company company = getItem(position);
 
         if(convertView == null) {
 
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.likes_item,parent,false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.matches_item,parent,false);
 
         }
-        System.out.println("____________________________________________");
-        System.out.println(intern.getName());
 
 //        ImageView imageView = convertView.findViewById(R.id.profile_pic);
         TextView name = convertView.findViewById(R.id.personName);
-        TextView age = convertView.findViewById(R.id.phoneNumber);
+        TextView phoneNumber = convertView.findViewById(R.id.phoneNumber);
 
 //        imageView.setImageResource();
-        name.setText(intern.getName());
-        age.setText(intern.getAgeAsAString());
+        name.setText(company.getName());
+        phoneNumber.setText(company.getPhoneNumber());
 
 
         return convertView;

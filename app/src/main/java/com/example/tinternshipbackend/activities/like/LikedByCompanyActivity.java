@@ -3,7 +3,6 @@ package com.example.tinternshipbackend.activities.like;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -59,9 +58,9 @@ public class LikedByCompanyActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent i = new Intent(LikedByCompanyActivity.this, CompanyActivity.class);
+                Intent i = new Intent(LikedByCompanyActivity.this, LCompanyActivity.class);
                 i.putExtra("name", companiesWhoLikedMe.get(position).getName());
-                i.putExtra("phoneNumber", companiesWhoLikedMe.get(position).getPhoneNumber());
+//                i.putExtra("phoneNumber", companiesWhoLikedMe.get(position).getPhoneNumber());
                 i.putExtra("description", companiesWhoLikedMe.get(position).getDescription());
                 startActivity(i);
             }

@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tinternshipbackend.R;
 import com.example.tinternshipbackend.activities.account_management.company.ManageCompanyInternshipsActivity;
+import com.example.tinternshipbackend.activities.match.CompanyMatchesActivity;
+import com.example.tinternshipbackend.activities.match.InternMatchesActivity;
 import com.example.tinternshipbackend.controllers.Like.LikeController;
 import com.example.tinternshipbackend.controllers.authentication.AuthController;
 import com.example.tinternshipbackend.controllers.company.CompanyController;
@@ -230,7 +232,8 @@ public class LikeCompanyActivity extends AppCompatActivity {
     }
 
     private void matches() {
-
+        Intent intent = new Intent(mContext, InternMatchesActivity.class);
+        startActivity(intent);
     }
 
     private void likes() {

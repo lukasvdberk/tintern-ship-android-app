@@ -11,15 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.tinternshipbackend.R;
-import com.example.tinternshipbackend.models.company.Company;
 import com.example.tinternshipbackend.models.intern.Intern;
 
 import java.util.ArrayList;
 
-public class InternLikesAdapter extends ArrayAdapter<Intern> {
+public class CompanyMatchesAdapter extends ArrayAdapter<Intern> {
 
-    public InternLikesAdapter(Context context, ArrayList<Intern> companyArrayList){
-        super(context, R.layout.likes_item, companyArrayList);
+    public CompanyMatchesAdapter(Context context, ArrayList<Intern> internArrayList){
+        super(context, R.layout.matches_item, internArrayList);
 
     }
 
@@ -31,19 +30,17 @@ public class InternLikesAdapter extends ArrayAdapter<Intern> {
 
         if(convertView == null) {
 
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.likes_item,parent,false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.matches_item,parent,false);
 
         }
-        System.out.println("____________________________________________");
-        System.out.println(intern.getName());
 
 //        ImageView imageView = convertView.findViewById(R.id.profile_pic);
         TextView name = convertView.findViewById(R.id.personName);
-        TextView age = convertView.findViewById(R.id.phoneNumber);
+        TextView phoneNumber = convertView.findViewById(R.id.phoneNumber);
 
 //        imageView.setImageResource();
         name.setText(intern.getName());
-        age.setText(intern.getAgeAsAString());
+        phoneNumber.setText(intern.getPhoneNumber());
 
 
         return convertView;
