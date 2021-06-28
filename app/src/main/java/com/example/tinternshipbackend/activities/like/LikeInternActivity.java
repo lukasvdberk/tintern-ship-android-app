@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,7 @@ import com.example.tinternshipbackend.models.company.Company;
 import com.example.tinternshipbackend.models.company.CompanyProject;
 import com.example.tinternshipbackend.models.intern.Intern;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
+import com.example.tinternshipbackend.viewUtil.DownloadImageAndSet;
 import com.example.tinternshipbackend.viewUtil.ToastUtil;
 
 import java.util.ArrayList;
@@ -149,6 +151,9 @@ public class LikeInternActivity extends AppCompatActivity {
 
         TextView age = (TextView) findViewById(R.id.age);
         age.setText(Integer.toString(listOfAvailableInterns.get(index).getAge()));
+
+        ImageView profileImage = (ImageView) findViewById(R.id.profile_image);
+        new DownloadImageAndSet(profileImage, this).execute(listOfAvailableInterns.get(index).getAvatarUrl());
 
         TextView description = (TextView) findViewById(R.id.description);
         description.setText(listOfAvailableInterns.get(index).getDescription());

@@ -1,11 +1,13 @@
 package com.example.tinternshipbackend.models.intern;
 
 import com.example.tinternshipbackend.models.Education;
+import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpClient;
 
 public class Intern {
     String id;
     String userId;
     String educationId;
+    String avatarUrl;
     String name;
     int age;
     String description;
@@ -78,5 +80,16 @@ public class Intern {
 
     public void setUserId() {
         this.userId = userId;
+    }
+
+    public String getAvatarUrl() {
+        if (!avatarUrl.startsWith("http")) {
+            return HttpClient.BASE_URL + avatarUrl;
+        }
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tinternshipbackend.databinding.ActivityLikeInternBinding;
 import com.example.tinternshipbackend.databinding.ActivityMatchInternBinding;
+import com.example.tinternshipbackend.viewUtil.DownloadImageAndSet;
 
 public class MInternActivity extends  AppCompatActivity{
 
@@ -24,18 +25,14 @@ public class MInternActivity extends  AppCompatActivity{
 
             String name = intent.getStringExtra("name");
             String educationName = intent.getStringExtra("educationName");
-//            String description = intent.getStringExtra("description");
             String phoneNumber = intent.getStringExtra("phoneNumber");
-
-//            int imageid = intent.getIntExtra("imageid",R.drawable.a);
 
             binding.nameProfile.setText(name);
             binding.educationProfile.setText(educationName);
-//            binding.relativeDescription.setText(description);
             binding.phoneProfile.setText(phoneNumber);
-//            binding.profileImage.setImageResource(imageid);
 
-
+            String avatarUrl = intent.getStringExtra("avatarUrl");
+            new DownloadImageAndSet(binding.profileImage, this).execute(avatarUrl);
         }
     }
 }

@@ -71,9 +71,8 @@ public class LikedByInternActivity extends AppCompatActivity {
                 i.putExtra("name", internsWhoLikedMe.get(position).getName());
                 i.putExtra("age", internsWhoLikedMe.get(position).getAge());
                 i.putExtra("educationName", listOfEducations.get(position).getName());
-//                i.putExtra("phoneNumber", internsWhoLikedMe.get(position).getPhoneNumber());
+                i.putExtra("avatarUrl", internsWhoLikedMe.get(position).getAvatarUrl());
                 i.putExtra("description", internsWhoLikedMe.get(position).getDescription());
-
                 startActivity(i);
             }
         });

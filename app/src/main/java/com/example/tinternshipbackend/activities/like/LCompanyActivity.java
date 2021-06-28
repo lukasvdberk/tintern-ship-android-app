@@ -4,8 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.tinternshipbackend.databinding.ActivityLikeCompanyBinding;
+import com.example.tinternshipbackend.viewUtil.DownloadImageAndSet;
+
 
 public class LCompanyActivity extends AppCompatActivity {
 
@@ -23,13 +24,12 @@ public class LCompanyActivity extends AppCompatActivity {
 
             String name = intent.getStringExtra("name");
             String description = intent.getStringExtra("description");
-//            int imageid = intent.getIntExtra("imageid",R.drawable.a);
 
             binding.nameProfile.setText(name);
             binding.relativeDescription.setText(description);
-//            binding.profileImage.setImageResource(imageid);
 
-
+            String avatarUrl = intent.getStringExtra("avatarUrl");
+            new DownloadImageAndSet(binding.profileImage, this).execute(avatarUrl);
         }
     }
 }

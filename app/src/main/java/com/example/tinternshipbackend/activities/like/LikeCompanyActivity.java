@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,7 @@ import com.example.tinternshipbackend.models.company.CompanyProject;
 import com.example.tinternshipbackend.models.intern.Intern;
 import com.example.tinternshipbackend.responses.authentication.LoginResponse;
 import com.example.tinternshipbackend.services.httpBackendCommunicator.HttpResponse;
+import com.example.tinternshipbackend.viewUtil.DownloadImageAndSet;
 import com.example.tinternshipbackend.viewUtil.ToastUtil;
 
 import org.w3c.dom.Text;
@@ -155,12 +157,14 @@ public class LikeCompanyActivity extends AppCompatActivity {
     }
 
     private void setupListeners() {
-
         TextView name = (TextView) findViewById(R.id.name);
         name.setText(company.getName());
 
         TextView age = (TextView) findViewById(R.id.age);
         age.setText(education.getName());
+
+        ImageView profileImage = (ImageView) findViewById(R.id.profile_image);
+        new DownloadImageAndSet(profileImage, this).execute(company.getAvatarUrl());
 
         TextView description = (TextView) findViewById(R.id.description);
         description.setText(listOfProjects.get(index).getDescription());
