@@ -66,7 +66,7 @@ public class CompanyMatchesActivity extends AppCompatActivity {
                 i.putExtra("name", internsWhoMatchedMe.get(position).getName());
                 i.putExtra("phoneNumber", internsWhoMatchedMe.get(position).getPhoneNumber());
                 i.putExtra("description", internsWhoMatchedMe.get(position).getDescription());
-
+                i.putExtra("avatarUrl", internsWhoMatchedMe.get(position).getAvatarUrl());
                 startActivity(i);
             }
         });

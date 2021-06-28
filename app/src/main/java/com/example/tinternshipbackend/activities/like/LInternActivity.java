@@ -25,16 +25,12 @@ public class LInternActivity extends  AppCompatActivity{
             String name = intent.getStringExtra("name");
             String educationName = intent.getStringExtra("educationName");
             String description = intent.getStringExtra("description");
-//            int imageid = intent.getIntExtra("imageid",R.drawable.a);
 
             binding.nameProfile.setText(name);
             binding.educationProfile.setText(educationName);
             binding.relativeDescription.setText(description);
             String avatarUrl = intent.getStringExtra("avatarUrl");
             new DownloadImageAndSet(binding.profileImage, this).execute(avatarUrl);
-//            binding.profileImage.setImageResource(imageid);
-
-
         }
     }
 }
